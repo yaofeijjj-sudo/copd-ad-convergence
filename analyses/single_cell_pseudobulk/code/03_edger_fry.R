@@ -1,9 +1,9 @@
 # Donor pseudobulk: edgeR filterByExpr + TMM + fry (self-contained, directional) for the fixed Axis A set.
-# Follows DESIGN.md; edgeR v4 official workflow (Chen et al. 2025 NAR).
+# edgeR v4 official workflow (Chen et al. 2025 NAR).
 suppressPackageStartupMessages({library(data.table);library(edgeR)})
 ROOT <- '.'
 OUT <- file.path(ROOT,'03_candidate_analysis/AxisA_pseudobulk_disease_20261014')
-SYN <- file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results')
+SYN <- file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results')
 dir.create(file.path(OUT,'results'),showWarnings=FALSE)
 z <- function(x) (x-mean(x))/sd(x)
 
@@ -44,7 +44,7 @@ r1 <- run_one('lung','primary: ~ disease + age + sex + smoking status',L,lm,dl1,
 r2 <- run_one('lung','secondary: ~ disease',L,lm,dl2,'diseaseCOPD',lung_axis)
 
 ## Brain: SEA-AD DFC Micro-PVM_2, per 1 SD CPS_Local (Figure 5 model)
-bc <- fread(file.path(ROOT,'虚拟敲除/AxisA_疾病标尺核对_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz'))
+bc <- fread(file.path(ROOT,'virtual_knockout/AxisA_disease_scale_check_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz'))
 map <- fread(file.path(OUT,'source_data/brain_symbol_to_ensembl.tsv'))
 stopifnot(identical(bc$gene,map$gene))
 bm <- fread(file.path(SYN,'disease/brain_CPS_donor_data.tsv'))[Supertype=='Micro-PVM_2']

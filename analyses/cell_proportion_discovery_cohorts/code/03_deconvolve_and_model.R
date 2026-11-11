@@ -1,5 +1,4 @@
 # Estimate cell proportions (lung dtangle; brain BRETIGEA), versions A/B/C, then add them to the Figure 2d models.
-# Follows protocol/DESIGN.md as specified by protocol/DESIGN_RUN_20261015.md.
 .libPaths(c('_workspace/r_libs_deconv_20261002','_workspace/r_libs',.libPaths()))
 suppressPackageStartupMessages({library(data.table);library(dtangle);library(BRETIGEA);library(org.Hs.eg.db)})
 OUT <- '03_candidate_analysis/Deconvolution_composition_adjustment_20261002'
@@ -51,7 +50,7 @@ for (v in c('A','B','C')) {
 }
 
 ## ---------- Models ----------
-e1 <- new.env(); load('WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData',envir=e1)
+e1 <- new.env(); load('WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData',envir=e1)
 e2 <- new.env(); load('01_Results_and_Methods/01_Figure1_WGCNA/analysis/02_brain_wgcna/results/AD_WGCNA_no_residual_after_age_outlier/ad_wgcna_final_env.RData',envir=e2)
 ld <- as.data.table(e1$clinical_train); ld[,`:=`(red=e1$MEs[sample_id,'MEred'],turquoise=e1$MEs[sample_id,'MEturquoise'])]
 bd <- as.data.table(e2$clinical_train); bd[,`:=`(blue=e2$MEs[sample_id,'MEblue'],turquoise=e2$MEs[sample_id,'MEturquoise'])]

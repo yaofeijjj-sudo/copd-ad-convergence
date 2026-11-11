@@ -1,4 +1,4 @@
-# Axis A disease-context scope (design: ../DESIGN.md; deviations: ../DEVIATIONS.md).
+# Axis A disease-context scope.
 # Run from project root:
 #   R_LIBS=_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_disease_specificity_redesign_20261003/code/02_run_specificity.R
 suppressPackageStartupMessages({
@@ -8,7 +8,7 @@ set.seed(20261003)
 ROOT <- normalizePath(".")
 BR <- "03_candidate_analysis/AxisA_disease_specificity_redesign_20261003"
 RAW <- "02_data/raw/disease_specificity_tissue_20261003"
-SEL <- "GWAS和外周血/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata"
+SEL <- "GWAS_and_blood/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata"
 OUT <- "03_candidate_analysis/AxisA_singscore_official_rerun_20261004"
 for (d in c("results", "qa")) dir.create(file.path(OUT, d), showWarnings = FALSE)
 inputs <- c(
@@ -19,7 +19,7 @@ inputs <- c(
   ph14550 = file.path(SEL, "GSE47460_GPL14550_pheno_raw.csv"),
   ph6480 = file.path(SEL, "GSE47460_GPL6480_pheno_raw.csv"),
   gse84422 = "02_data/raw/bulk_brain_ad/GSE84422-GPL96_series_matrix.txt.gz",
-  ph84422 = "WGCNA_全部图件/复现资料/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv",
+  ph84422 = "WGCNA_figures/reproduction_materials/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv",
   gse33000 = "02_data/raw/bulk_brain_ad/GSE33000_series_matrix.txt.gz",
   gse118553 = "02_data/raw/bulk_brain_ad/GSE118553_series_matrix.txt.gz",
   gpl10558 = "02_data/raw/platform_annotations/GPL10558.annot.gz",
@@ -143,7 +143,7 @@ for (pl in c("14550", "6480")) {
 }
 m <- read_matrix(inputs[["gse84422"]]); ph <- fread(P(inputs[["ph84422"]])); stopifnot(nrow(ph) == 57)
 m <- collapse_array(m[, ph$sample_id], inputs[["gpl96"]])
-# GSE84422 was the frozen AD reference; replaced by GSE118553 for the figure by author decision (DEVIATIONS item 10)
+# GSE84422 was the frozen AD reference; replaced by GSE118553 for the figure by author decision
 add(fit_comparison("GSE84422 AD", "target", "replaced_reference", "GSE84422-GPL96", "brain DLPFC", "AD vs normal", m,
                    data.table(sample = ph$sample_id, disease = as.integer(ph$neuropathological_category != "Normal"), age = as.numeric(ph$age), sex = as.character(ph$sex_male)), c("age", "sex")))
 

@@ -21,7 +21,7 @@ FS <- 8                        # every glyph >= 8 pt
 PT <- 1 / .pt                  # ggplot text size unit for geom_text: size = FS * PT
 LW <- 0.5
 TAG <- 12                      # panel letters, as in the 10-05 Affinity layout
-# Visual style of the 10-05 figure.af panels (WGCNA, cross WGCNA, 富集分析, 细胞定位, GWAS和外周血, 虚拟敲除 scripts):
+# Visual style of the 10-05 figure.af panels (WGCNA, cross WGCNA, functional_enrichment, cell_localization, GWAS_and_blood, virtual_knockout scripts):
 # bold Arial, ink #262626, red #F04438 / blue #168BEA, darker forest red/blue #B34F4B / #397A9B, grey #D1D5DB.
 INK <- "#262626"; MUTED <- "#555B61"
 COL <- list(
@@ -137,7 +137,7 @@ compose_figure <- function(blocks, name, W, H, row_groups = NULL, column_groups 
   pdf_dev(tmp, W / 25.4, H / 25.4); print(canvas); invisible(dev.off())
   log <- system2(MERGE_PY[1], c("-I", shQuote(MERGE_PY[2]), shQuote(tmp), shQuote(out)), stdout = TRUE)
   stopifnot(is.null(attr(log, "status")), file.exists(out)); cat(name, "merge:", log, "\n")
-  ragg::agg_png(P(file.path(FIGDIR, "预览PNG", paste0(name, "_preview.png"))), width = W / 25.4, height = H / 25.4, units = "in", res = 200)
+  ragg::agg_png(P(file.path(FIGDIR, "preview_PNG", paste0(name, "_preview.png"))), width = W / 25.4, height = H / 25.4, units = "in", res = 200)
   print(canvas); invisible(dev.off())
   cat("saved", name, sprintf("%.0f x %.0f mm; %d panels measured\n", W, H, nrow(m)))
 }

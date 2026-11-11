@@ -1,9 +1,6 @@
 #!/usr/bin/env Rscript
 
 # T04: fixed-module sensitivity to restoring the seven GSE33000 age outliers.
-# The analysis contract is frozen in:
-# T04_AD_age_outlier_fixed_module_sensitivity_20260724/docs/
-# T04_preregistered_analysis_contract_20260724.md
 
 suppressPackageStartupMessages({
   library(Biobase)

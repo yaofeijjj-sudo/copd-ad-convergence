@@ -1,4 +1,4 @@
-# Axis B fixed-score replication (DESIGN.md). prep()/score_eff()/dl() copied from
+# Axis B fixed-score replication. prep()/score_eff()/dl() copied from
 # AxisA_member_direction_robustness_20261018/code/02_member_effects_and_sensitivity.R; only the gene set changes.
 # Check A reproduces the adopted Axis A effects with the same functions, so the pipeline is identical.
 # Run from project root:

@@ -3,7 +3,7 @@ suppressPackageStartupMessages({library(data.table);library(Matrix);library(hdf5
 ROOT <- '.'
 OUT <- file.path(ROOT,'03_candidate_analysis/AxisA_pseudobulk_disease_20261014')
 H5 <- file.path(ROOT,'_workspace/gse302339_axisA_20260903/10x_h5')
-CELLS <- file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz')
+CELLS <- file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz')
 LEDGER <- file.path(ROOT,'01_current_analysis/01_storyline_current/06_single_cell_projection/results/GSE302339_axisA_official_ucell_20260903_candidate/tables/sample_ledger.tsv')
 dir.create(file.path(OUT,'source_data'),recursive=TRUE,showWarnings=FALSE)
 

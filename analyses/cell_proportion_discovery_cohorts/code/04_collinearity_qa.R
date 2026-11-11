@@ -2,7 +2,7 @@
 suppressPackageStartupMessages({library(data.table);library(jsonlite)})
 OUT <- '03_candidate_analysis/Deconvolution_composition_adjustment_20261002'
 p <- readRDS(file.path(OUT,'results/estimated_proportions.rds'))
-e1 <- new.env(); load('WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData',envir=e1)
+e1 <- new.env(); load('WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData',envir=e1)
 e2 <- new.env(); load('01_Results_and_Methods/01_Figure1_WGCNA/analysis/02_brain_wgcna/results/AD_WGCNA_no_residual_after_age_outlier/ad_wgcna_final_env.RData',envir=e2)
 vif <- function(X) { X <- as.data.frame(scale(X)); sapply(names(X), function(v) { r2 <- summary(lm(X[[v]] ~ ., data=X[setdiff(names(X),v)]))$r.squared; 1/(1-r2) }) }
 lb <- p$lung$B; bb <- p$brain$B

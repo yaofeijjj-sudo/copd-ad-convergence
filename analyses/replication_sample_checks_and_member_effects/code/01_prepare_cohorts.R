@@ -9,7 +9,7 @@ suppressPackageStartupMessages(library(affy))
 OUT <- "03_candidate_analysis/AxisA_member_direction_robustness_20261018"
 for (d in c("source_data", "qa", "results", "figures")) dir.create(P(file.path(OUT, d)), showWarnings = FALSE)
 RAW <- "02_data/raw/disease_specificity_tissue_20261003"
-SEL <- "GWAS和外周血/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata"
+SEL <- "GWAS_and_blood/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata"
 coh <- list()
 put <- function(id, organ, role, expr, dat, covars, kind, source, region, diagnosis, extra = list()) {
   stopifnot(all(dat$sample %in% colnames(expr)))
@@ -20,7 +20,7 @@ put <- function(id, organ, role, expr, dat, covars, kind, source, region, diagno
 
 # ---------- discovery cohorts (Figure 2d inputs) ----------
 b <- readRDS(P("03_candidate_analysis/Deconvolution_composition_adjustment_20261002/source_data/bulk_full_matrices.rds"))
-e1 <- new.env(); load(P("WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData"), envir = e1)
+e1 <- new.env(); load(P("WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData"), envir = e1)
 e2 <- new.env(); load(P("01_Results_and_Methods/01_Figure1_WGCNA/analysis/02_brain_wgcna/results/AD_WGCNA_no_residual_after_age_outlier/ad_wgcna_final_env.RData"), envir = e2)
 cl <- as.data.table(e1$clinical_train); stopifnot(identical(cl$sample_id, colnames(b$lung)))
 put("GSE76925", "lung", "discovery", b$lung, cl[, .(sample = sample_id, disease = copd_status, age = age_z, sex = sex_male, packyears = packyears_z)],
@@ -43,7 +43,7 @@ d <- base[state %in% c("Chronic Obstructive Lung Disease", "Control")][, disease
 put("GSE47460", "lung", "validation", mm, d, c("age", "sex", "smoking"), "array", "Lung Tissue Research Consortium (LGRC)", "lung", "COPD vs control (no chronic lung disease)")
 
 # ---------- AD cohorts (04_ad_reference_meta.R) ----------
-ph <- fread(P("WGCNA_全部图件/复现资料/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv"))
+ph <- fread(P("WGCNA_figures/reproduction_materials/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv"))
 m <- collapse_array(read_matrix("02_data/raw/bulk_brain_ad/GSE84422-GPL96_series_matrix.txt.gz")[, ph$sample_id], "02_data/raw/platform_annotations/GPL96_annot_table.csv")
 put("GSE84422", "brain", "validation", m, data.table(sample = ph$sample_id, disease = as.integer(ph$neuropathological_category != "Normal"),
     age = as.numeric(ph$age), sex = as.character(ph$sex_male), category = ph$neuropathological_category, subject = ph$subject_id),

@@ -1,9 +1,9 @@
-# SEA-AD DFC single-nucleus reference for CIBERSORTx (DESIGN.md): 250 nuclei per broad type, balanced across donors,
+# SEA-AD DFC single-nucleus reference for CIBERSORTx: 250 nuclei per broad type, balanced across donors,
 # raw UMI counts from layers/UMIs. Writes a Matrix Market file (Ensembl IDs) for 03_brain_reference.R.
 # Run from project root:
 #   _workspace/venvs/seaad_dfc_axisA_localization_20260831_candidate/bin/python -I 03_candidate_analysis/CIBERSORTx_composition_adjustment_20261018/code/02_brain_reference_extract.py
 import h5py, numpy as np, pandas as pd, scipy.sparse as sp, scipy.io as sio, os
-H5 = "细胞定位/raw_data/sea_ad_pfc_a9_20260622/SEAAD_DFC_RNAseq_final-nuclei.2026-06-22.h5ad"
+H5 = "cell_localization/raw_data/sea_ad_pfc_a9_20260622/SEAAD_DFC_RNAseq_final-nuclei.2026-06-22.h5ad"
 OUT = "03_candidate_analysis/CIBERSORTx_composition_adjustment_20261018"
 N_PER, SEED = 250, 20261018
 f = h5py.File(H5, "r"); obs = f["obs"]

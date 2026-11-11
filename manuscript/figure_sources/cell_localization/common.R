@@ -1,14 +1,14 @@
 suppressPackageStartupMessages({library(data.table);library(Matrix)})
 ROOT <- '.'
 SC <- file.path(ROOT,'01_current_analysis/01_storyline_current/06_single_cell_projection/results')
-OUT <- file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results/lung')
+OUT <- file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results/lung')
 LUNG <- file.path(SC,'GSE302339_axisA_official_ucell_20260903_candidate')
 BRAIN <- file.path(SC,'SEAAD_DFC_axisA_localization_20260831_candidate')
 PACK <- file.path(ROOT,'COPD_AD_Codex_execution_pack')
 for(d in c('tables','qa','objects','figures','docs','logs')) dir.create(file.path(OUT,d),recursive=TRUE,showWarnings=FALSE)
 RMAX <- 1500L
-AXIS <- readLines(file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results/lung_axis_measured.txt'))
-UNIVERSE <- readLines(file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results/lung_universe_measured.txt'))
+AXIS <- readLines(file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results/lung_axis_measured.txt'))
+UNIVERSE <- readLines(file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results/lung_universe_measured.txt'))
 stopifnot(length(AXIS)==136,length(UNIVERSE)==3608)
 write_tsv <- function(x,name) fwrite(x,file.path(OUT,'tables',name),sep='\t',na='NA')
 read_counts <- function(path) {

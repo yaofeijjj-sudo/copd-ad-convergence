@@ -1,5 +1,5 @@
 suppressPackageStartupMessages({library(data.table);library(ggplot2);library(scales);library(grid)})
-root<-normalizePath(getwd());O<-file.path(root,'细胞定位/SYN01_Entrez_downstream_20261001')
+root<-normalizePath(getwd());O<-file.path(root,'cell_localization/SYN01_Entrez_downstream_20261001')
 # Original standalone_figures_20260904 theme, geometry, marks and palettes.
 pal<-c(lung='#137C8B',brain='#4B67A1',control='#6F7782',copd='#C4573E',ne='#5987A8',e='#D38235',dark='#22262A')
 th<-function()theme_classic(base_size=10,base_family='Arial')+theme(axis.line=element_line(linewidth=.35,colour=pal[['dark']]),axis.ticks=element_line(linewidth=.35,colour=pal[['dark']]),text=element_text(size=10),axis.title=element_text(size=10),axis.text=element_text(size=10),legend.title=element_text(size=10,face='bold'),legend.text=element_text(size=10),plot.title=element_text(size=10,face='bold',margin=margin(b=3)),plot.subtitle=element_text(size=10,lineheight=1.08,margin=margin(b=6)),plot.caption=element_text(size=10,hjust=0,margin=margin(t=5)),plot.title.position='plot',plot.caption.position='plot',panel.grid=element_blank(),plot.margin=margin(8,10,8,8))

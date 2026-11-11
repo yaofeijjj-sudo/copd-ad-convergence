@@ -1,8 +1,8 @@
-# DESIGN.md rule 4: UCell (Wilcoxon P < 0.05) and pseudobulk (P >= 0.05) disagree.
+# Pre-specified rule: UCell (Wilcoxon P < 0.05) and pseudobulk (P >= 0.05) disagree.
 # Check whether the covariates used in the pseudobulk model explain the gap: linear model on donor UCell medians.
 suppressPackageStartupMessages(library(data.table))
 ROOT <- '.'; OUT <- file.path(ROOT,'03_candidate_analysis/AxisA_AM_pseudobulk_20261028')
-cells <- fread(file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz'),
+cells <- fread(file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz'),
   select=c('gsm','subject_id','disease_group','broad_celltype','celltypist_label','AxisA_UCell','age','sex','smoke'))
 z <- function(x) (x-mean(x))/sd(x)
 one <- function(label, sel) {

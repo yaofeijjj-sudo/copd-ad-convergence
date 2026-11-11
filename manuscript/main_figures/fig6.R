@@ -1,17 +1,17 @@
 # Fig 6. Function of Axis A, relation to myeloid signatures, and genetic enrichment.
 # Sources (frozen, not recomputed):
-#   富集分析/SYN01_Entrez_downstream_20261001/source_data/axisA_functional_enrichment_{complete_family_terms,complete_family_links,selected_genes}.csv (a)
+#   functional_enrichment/SYN01_Entrez_downstream_20261001/source_data/axisA_functional_enrichment_{complete_family_terms,complete_family_links,selected_genes}.csv (a)
 #   03_candidate_analysis/AxisA_myeloid_reference_20261019/results/signature_models_{by_cohort,AD_pooled}.tsv,
 #   03_candidate_analysis/AxisA_replication_after_exclusion_20261019/results/{by_cohort,pooled_sensitivity}.tsv (b)
 #   REF/magma.csv; 03_candidate_analysis/AxisA_MAGMA_APOE_exclusion_20261016/results/AD_MAGMA_APOE_exclusion.csv;
 #   03_candidate_analysis/AxisA_MAGMA_conditional_microglia_20261016/results/conditional_magma_results.csv;
 #   03_candidate_analysis/AxisA_auxiliary_checks_20261019/results/{magma_patir_conditional,magma_background_sensitivity}.tsv (c)
 source("06_resubmission_20261008/code/main_figures/common.R")
-EN <- "富集分析/SYN01_Entrez_downstream_20261001/source_data"
+EN <- "functional_enrichment/SYN01_Entrez_downstream_20261001/source_data"
 
-# ---- a: old 3a sankey-bubble (富集分析/桑基气泡图_统一格式_20260917/code/plot_functions.R, make_axis_plot) ----------------
+# ---- a: old 3a sankey-bubble (functional_enrichment/sankey_bubble_20260917/code/plot_functions.R, make_axis_plot) ----------------
 suppressPackageStartupMessages({ library(ggalluvial); library(dplyr); library(scales) })
-source(P("富集分析/桑基气泡图_统一格式_20260917/code/plot_functions.R"))
+source(P("functional_enrichment/sankey_bubble_20260917/code/plot_functions.R"))
 terms <- as.data.frame(fread(P(file.path(EN, "axisA_functional_enrichment_complete_family_terms.csv"))))
 links <- as.data.frame(fread(P(file.path(EN, "axisA_functional_enrichment_complete_family_links.csv"))))
 sg <- fread(P(file.path(EN, "axisA_functional_enrichment_selected_genes.csv")))

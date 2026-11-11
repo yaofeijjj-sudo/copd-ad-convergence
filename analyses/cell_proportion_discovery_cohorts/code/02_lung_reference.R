@@ -3,7 +3,7 @@
 suppressPackageStartupMessages({library(data.table);library(Matrix);library(hdf5r);library(org.Hs.eg.db)})
 OUT <- '03_candidate_analysis/Deconvolution_composition_adjustment_20261002'
 H5 <- '_workspace/gse302339_axisA_20260903/10x_h5'
-cells <- fread('细胞定位/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz',select=c('gsm','barcode','broad_celltype','passes_QC'))
+cells <- fread('cell_localization/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz',select=c('gsm','barcode','broad_celltype','passes_QC'))
 stopifnot(all(cells$passes_QC), nrow(cells)==211464)
 ledger <- fread('01_current_analysis/01_storyline_current/06_single_cell_projection/results/GSE302339_axisA_official_ucell_20260903_candidate/tables/sample_ledger.tsv')[matrix_available==TRUE]
 types <- sort(unique(cells$broad_celltype))

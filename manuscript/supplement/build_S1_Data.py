@@ -16,8 +16,8 @@ ROOT = Path.cwd()
 REF = ROOT / '05_github_release/copd-ad-convergence/validation/reference'
 CAND = ROOT / '03_candidate_analysis'
 SRC = ROOT / '06_resubmission_20261008/code/main_figures/source_data'
-SC = ROOT / '细胞定位/SYN01_Entrez_downstream_20261001/source_data'
-EN = ROOT / '富集分析/SYN01_Entrez_downstream_20261001/source_data'
+SC = ROOT / 'cell_localization/SYN01_Entrez_downstream_20261001/source_data'
+EN = ROOT / 'functional_enrichment/SYN01_Entrez_downstream_20261001/source_data'
 LM = CAND / 'Lung_sc_donor_merge_20261029/results/tables'  # 10-29: GSE302339 cood8 = copd8, lung donor-level values for 55 donors
 CO = LM  # CellOracle ranking with 55-donor lung means (CellOracle_ranking_scale_20261019 layout)
 OUT = ROOT / '06_resubmission_20261008/supplementary/S1_Data.xlsx'
@@ -66,8 +66,8 @@ def top10(path):
 
 
 sheets = []  # (sheet name, panel, description, header, rows, source)
-EN_DIR = {'细胞定位': 'cell_localization', '富集分析': 'functional_enrichment',
-          'WGCNA_全部图件': 'WGCNA_figures', '复现资料': 'reproduction_materials'}  # English labels for the submitted file
+EN_DIR = {'cell_localization': 'cell_localization', 'functional_enrichment': 'functional_enrichment',
+          'WGCNA_figures': 'WGCNA_figures', 'reproduction_materials': 'reproduction_materials'}  # English labels for the submitted file
 
 
 def add(name, panel, desc, src, header=None, rows=None):
@@ -122,7 +122,7 @@ r = [x for x in r if x[h.index('TF')] in ('STAT3', 'CEBPB')]; assert len(r) == 2
 add('Fig8de', 'Fig 8d, e', 'Predicted delta_X (natural-log scale) of 136 Axis A genes after STAT3 and CEBPB knockout', CO / 'Fig6def_source_signed_logratio.tsv', h, r)
 add('Fig8f', 'Fig 8f', 'TF activity correlation with the donor Axis A score and disease-association t', SRC / 'Fig8f_TF_activity.tsv')
 # Fig A-B in S1 File: the files read by build_S1_S2_Fig.R
-ST = ROOT / 'WGCNA_全部图件/复现资料/figure_revision_20260915_Arial8_PDF/source_data'
+ST = ROOT / 'WGCNA_figures/reproduction_materials/figure_revision_20260915_Arial8_PDF/source_data'
 AB = CAND / 'AxisB_fixed_score_replication_20261019/results'
 add('FigA_lung', 'Fig A a (S1 File)', 'Lung network scale-free fit (signed R2) and mean connectivity by soft-threshold power (GSE76925; selected power 8)', ST / 'lung_soft_threshold.csv')
 add('FigA_brain', 'Fig A b (S1 File)', 'Brain network scale-free fit (signed R2) and mean connectivity by soft-threshold power (GSE33000; selected power 12)', ST / 'brain_soft_threshold.csv')

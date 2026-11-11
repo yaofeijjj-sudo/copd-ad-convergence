@@ -4,9 +4,9 @@
 # result with the original key (gate), then writes the merged-donor result.
 # Run from project root:
 #   LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/Lung_sc_donor_merge_20261029/code/01_localization_and_donor_tests.R
-source('细胞定位/SYN01_Entrez_downstream_20261001/code/common.R')   # fit_model / contrast / target_contrasts, AXIS, RMAX
+source('cell_localization/SYN01_Entrez_downstream_20261001/code/common.R')   # fit_model / contrast / target_contrasts, AXIS, RMAX
 BR <- file.path(ROOT, '03_candidate_analysis/Lung_sc_donor_merge_20261029')
-SYN <- file.path(ROOT, '细胞定位/SYN01_Entrez_downstream_20261001')
+SYN <- file.path(ROOT, 'cell_localization/SYN01_Entrez_downstream_20261001')
 OUT <- file.path(BR, 'results')   # write_tsv() and target_contrasts() write here, not into SYN01
 for (d in c('tables', 'qa', 'objects')) dir.create(file.path(OUT, d), recursive = TRUE, showWarnings = FALSE)
 remap <- function(x) fifelse(x == 'cood8', 'copd8', x)

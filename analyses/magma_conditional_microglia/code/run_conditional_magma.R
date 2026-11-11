@@ -1,11 +1,11 @@
-# R7 conditional MAGMA (design: ../DESIGN.md, frozen before running). Run from the project root:
+# R7 conditional MAGMA. Run from the project root:
 #   LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs_deconv_20261002:_workspace/r_libs Rscript 03_candidate_analysis/AxisA_MAGMA_conditional_microglia_20261016/code/run_conditional_magma.R
 suppressPackageStartupMessages({library(BRETIGEA); library(AnnotationDbi); library(org.Hs.eg.db); library(data.table)})
 O <- "03_candidate_analysis/AxisA_MAGMA_conditional_microglia_20261016"
 for (d in c("inputs", "magma", "results", "logs")) dir.create(file.path(O, d), showWarnings = FALSE)
 magma <- "_workspace/project_tools/external_tools/magma_v1.10_official/magma_v1.10_mac/magma"
-genes_raw <- "GWAS和外周血/SYN01_Entrez_downstream_20261001/results/magma/AD_total_N.genes.raw"
-base_sets <- "GWAS和外周血/SYN01_Entrez_downstream_20261001/results/magma_inputs/locked_axes.sets"
+genes_raw <- "GWAS_and_blood/SYN01_Entrez_downstream_20261001/results/magma/AD_total_N.genes.raw"
+base_sets <- "GWAS_and_blood/SYN01_Entrez_downstream_20261001/results/magma_inputs/locked_axes.sets"
 stopifnot(as.character(packageVersion("BRETIGEA")) == "1.0.3", as.character(packageVersion("org.Hs.eg.db")) == "3.22.0")
 
 sets <- lapply(strsplit(readLines(base_sets), "\t"), function(x) x[-1]); names(sets) <- sapply(strsplit(readLines(base_sets), "\t"), `[`, 1)

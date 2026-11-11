@@ -2,7 +2,7 @@
 .libPaths(c("_workspace/r_libs_blood_deconv_20261016", "_workspace/r_libs", .libPaths()))
 suppressPackageStartupMessages({ library(data.table); library(Biobase); library(GEOquery); library(limma); library(org.Hs.eg.db); library(AnnotationDbi) })
 ROOT <- normalizePath(getwd()); O <- file.path(ROOT, "03_candidate_analysis/AxisA_auxiliary_checks_20261019")
-SYN <- file.path(ROOT, "GWAS和外周血/SYN01_Entrez_downstream_20261001"); raw_dir <- file.path(ROOT, "02_data/raw/bulk_blood_external"); project_root <- file.path(O, "sandbox")
+SYN <- file.path(ROOT, "GWAS_and_blood/SYN01_Entrez_downstream_20261001"); raw_dir <- file.path(ROOT, "02_data/raw/bulk_blood_external"); project_root <- file.path(O, "sandbox")
 src <- parse(file.path(SYN, "code/refit_gse248493.R"))
 for (e in src) if (is.call(e) && identical(e[[1]], as.name("<-")) && is.call(e[[3]]) && identical(e[[3]][[1]], as.name("function"))) eval(e, globalenv())
 pa <- prepare_microarray("GSE63060"); pb <- prepare_microarray("GSE63061")

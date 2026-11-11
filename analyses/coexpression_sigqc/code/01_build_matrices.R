@@ -1,5 +1,5 @@
 # Build the 8 independent log-expression matrices used for Axis A replication, with identical samples and preprocessing.
-# Design: ../DESIGN.md. Loading code copied from AxisA_singscore_official_rerun_20261004 (02_run_specificity.R, 04_ad_reference_meta.R).
+# Loading code copied from AxisA_singscore_official_rerun_20261004 (02_run_specificity.R, 04_ad_reference_meta.R).
 # Run from project root:
 #   R_LIBS=_workspace/r_libs_affy:_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_sigQC_coherence_20261014/code/01_build_matrices.R
 source("03_candidate_analysis/AxisA_singscore_official_rerun_20261004/code/00_functions.R")
@@ -7,7 +7,7 @@ suppressPackageStartupMessages(library(affy))
 OUT <- "03_candidate_analysis/AxisA_sigQC_coherence_20261014"
 CACHE <- "_workspace/sigqc_axisA_20261014"
 for (d in c(file.path(OUT, "qa"), CACHE)) dir.create(d, showWarnings = FALSE, recursive = TRUE)
-SEL <- "GWAS和外周血/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata"
+SEL <- "GWAS_and_blood/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata"
 RAW <- "02_data/raw/disease_specificity_tissue_20261003"
 inputs <- c(
   axisA = "03_candidate_analysis/WGCNA_original_modules_Entrez_correction_20261001/results/cross/AxisA_confirmed_genes.csv",
@@ -16,7 +16,7 @@ inputs <- c(
   ph14550 = file.path(SEL, "GSE47460_GPL14550_pheno_raw.csv"), ph6480 = file.path(SEL, "GSE47460_GPL6480_pheno_raw.csv"),
   gpl14550 = "02_data/raw/platform_annotations/GPL14550_annot_table.csv", gpl6480 = "02_data/raw/platform_annotations/GPL6480_annot_table.csv",
   gse84422 = "02_data/raw/bulk_brain_ad/GSE84422-GPL96_series_matrix.txt.gz",
-  ph84422 = "WGCNA_全部图件/复现资料/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv",
+  ph84422 = "WGCNA_figures/reproduction_materials/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv",
   gse118553 = "02_data/raw/bulk_brain_ad/GSE118553_series_matrix.txt.gz",
   gse313307_counts = file.path(RAW, "GSE313307_raw_count.csv.gz"), gse313307 = file.path(RAW, "GSE313307_series_matrix.txt.gz"),
   gse140841 = file.path(RAW, "GSE140841_series_matrix.txt.gz"), gse140841_tar = file.path(RAW, "GSE140841_RAW.tar"),

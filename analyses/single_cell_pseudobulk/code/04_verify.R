@@ -3,7 +3,7 @@
 suppressPackageStartupMessages({library(data.table);library(edgeR);library(jsonlite)})
 ROOT <- '.'
 OUT <- file.path(ROOT,'03_candidate_analysis/AxisA_pseudobulk_disease_20261014')
-SYN <- file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results')
+SYN <- file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results')
 dir.create(file.path(OUT,'qa'),showWarnings=FALSE)
 sha <- function(f) strsplit(system2('shasum',c('-a','256',shQuote(f)),stdout=TRUE),' ')[[1]][1]
 z <- function(x) (x-mean(x))/sd(x)
@@ -21,7 +21,7 @@ lm <- fread(file.path(OUT,'source_data/lung_myeloid_donors.tsv'))
 L <- as.matrix(lc[,-1]); rownames(L) <- lc$gene_id; L <- L[,lm$subject_id]
 lm[,`:=`(disease=factor(disease_group,levels=c('Control','COPD')),age_z=z(age),sex=factor(sex),smoke=factor(smoke,levels=c('Never','Former','Current')))]
 dl <- model.matrix(~disease+age_z+sex+smoke,data=lm)
-bc <- fread(file.path(ROOT,'虚拟敲除/AxisA_疾病标尺核对_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz'))
+bc <- fread(file.path(ROOT,'virtual_knockout/AxisA_disease_scale_check_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz'))
 map <- fread(file.path(OUT,'source_data/brain_symbol_to_ensembl.tsv'))
 bm <- fread(file.path(SYN,'disease/brain_CPS_donor_data.tsv'))[Supertype=='Micro-PVM_2'];setorder(bm,`Donor ID`)
 B <- as.matrix(bc[,-1]); rownames(B) <- map$gene_id; B <- B[,bm$`Donor ID`]
@@ -44,7 +44,7 @@ qa <- list(
            donor_total_UMI_vs_cell_QC_sum_max_abs_diff=lung_total_maxdiff,
            counts_sha256=sha(file.path(OUT,'source_data/lung_myeloid_pseudobulk_counts.tsv.gz'))),
  brain=list(nuclei=sum(bm$n_nuclei),donors=nrow(bm),matches_S3_Table=(sum(bm$n_nuclei)==23198 && nrow(bm)==79),
-           counts_sha256=sha(file.path(ROOT,'虚拟敲除/AxisA_疾病标尺核对_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz')),
+           counts_sha256=sha(file.path(ROOT,'virtual_knockout/AxisA_disease_scale_check_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz')),
            expected_sha256_from_20260925='b997c1f984e9080cb676f1b0c09bb365e9b124ea22a318c78aaa040a15236b5b'),
  axis_lists=list(lung=sha(file.path(SYN,'lung_axis_measured.txt')),brain=sha(file.path(SYN,'brain_axis_measured.txt'))),
  fry_vs_roast=roast_chk,

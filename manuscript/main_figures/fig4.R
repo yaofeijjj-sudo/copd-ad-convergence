@@ -1,14 +1,14 @@
 # Fig 4. Cellular localization of Axis A.
 # Sources (frozen, not recomputed):
-#   细胞定位/SYN01_Entrez_downstream_20261001/source_data/{Lung,Brain}_UMAP_cells.tsv.gz, *_plotted_points.tsv, *_palette.tsv,
+#   cell_localization/SYN01_Entrez_downstream_20261001/source_data/{Lung,Brain}_UMAP_cells.tsv.gz, *_plotted_points.tsv, *_palette.tsv,
 #     brain_subtype_display_map_20260929.tsv (a-f)
 #   REF/{lung,brain}_null.tsv, REF/localization.tsv (g, h)
 #   10-29: lung panels e and g read 03_candidate_analysis/Lung_sc_donor_merge_20261029 (GSE302339 cood8 = copd8, 55 donors)
-# Designs follow the 10-05 figure.af old Fig 5 (细胞定位/SYN01_Entrez_downstream_20261001 *_style_restored.R): category palette,
+# Designs follow the 10-05 figure.af old Fig 5 (cell_localization/SYN01_Entrez_downstream_20261001 *_style_restored.R): category palette,
 # grey-to-red UCell ramp, per-subtype coloured rainclouds, grey null histograms with a red Axis A line.
 # Layout: lung UMAPs a, b and brain UMAPs c, d (each about 55 mm wide) above the null histograms g, h; subtype rainclouds e, f on the right.
 source("06_resubmission_20261008/code/main_figures/common.R")
-SC <- "细胞定位/SYN01_Entrez_downstream_20261001/source_data"
+SC <- "cell_localization/SYN01_Entrez_downstream_20261001/source_data"
 LM <- "03_candidate_analysis/Lung_sc_donor_merge_20261029/results/tables"  # lung donor-level values with cood8 -> copd8
 
 # ---- a-d: UMAPs ---------------------------------------------------------------------------------------------

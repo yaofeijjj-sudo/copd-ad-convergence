@@ -4,7 +4,7 @@
 # All shapes are drawn here, so no third-party artwork is used. Palette: lung #B34F4B, brain #397A9B, Axis A #F04438, teal arrows.
 source("06_resubmission_20261008/code/main_figures/common.R")
 source("06_resubmission_20261008/code/main_figures/fig1_icons.R")
-SC <- "细胞定位/SYN01_Entrez_downstream_20261001/source_data"
+SC <- "cell_localization/SYN01_Entrez_downstream_20261001/source_data"
 TEAL <- "#179C8E"; ARROW <- INK; W <- 190; H <- 170; LINE <- "#D9DEE1"; GREY <- "#C9CED4"; CTRL <- "#8A929B"
 LF <- "#FAF1F0"; BF <- "#EEF4F7"
 txt <- function(x, y, s, colr = INK, face = "bold", hj = 0.5, vj = 0.5) annotate("text", x = x, y = y, label = s, size = FS * PT, family = "Arial", fontface = face, colour = colr, hjust = hj, vjust = vj, lineheight = 0.92)

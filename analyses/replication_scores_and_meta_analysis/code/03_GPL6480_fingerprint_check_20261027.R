@@ -19,7 +19,7 @@ a <- fread("02_data/raw/platform_annotations/GPL6480_annot_table.csv", colClasse
 m <- read_matrix("02_data/raw/bulk_lung_copd/GSE47460_GPL6480/GSE47460-GPL6480_series_matrix.txt.gz")
 a <- a[probe %in% rownames(m) & !is.na(gene) & nzchar(gene) & !grepl("/", gene)]
 m <- keep_max_mad(m[a$probe, , drop = FALSE], current_id(a$gene))
-ph <- fread("GWAS和外周血/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata/GSE47460_GPL6480_pheno_raw.csv")
+ph <- fread("GWAS_and_blood/analysis/05_disease_specificity_gwas/results/axisA_disease_context_selectivity_20260711/metadata/GSE47460_GPL6480_pheno_raw.csv")
 ph <- ph[match(colnames(m), geo_accession)]; ph[, donor := sub("^(LT[0-9]{6}).*$", "\\1", title)]
 ph <- ph[`disease state:ch1` %in% c("Control", "Chronic Obstructive Lung Disease")]
 ids <- unique(ph$donor); b <- sapply(ids, function(id) rowMeans(m[, ph[donor == id]$geo_accession, drop = FALSE])); rownames(b) <- rownames(m)
@@ -28,7 +28,7 @@ e <- coh$GSE76925$expr[, coh$GSE76925$dat$sample]
 g <- intersect(rownames(e), rownames(b)); za <- t(scale(t(e[g, ]))); zb <- t(scale(t(b[g, ]))); ok <- rowSums(!is.finite(za)) == 0 & rowSums(!is.finite(zb)) == 0
 cc <- cor(za[ok, ], zb[ok, ]); cat("genes", sum(ok), "| GSE76925", nrow(cc), "| GPL6480 donors", ncol(cc), "\n")
 # fingerprint pairs (age, sex, FEV1 % predicted pre- or post-bronchodilator)
-e1 <- new.env(); load("WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData", envir = e1)
+e1 <- new.env(); load("WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData", envir = e1)
 ct <- as.data.table(e1$clinical_train); stopifnot(nrow(ct) == nrow(cc))
 d76 <- data.table(s76 = rownames(cc), age = round(as.numeric(ct$age)), sex = fifelse(as.character(ct$sex) %in% c("1", "M", "Male"), "M", "F"), fev1 = round(as.numeric(ct$FEV1_pp)))
 stopifnot(identical(d76$s76, as.character(coh$GSE76925$dat$sample)))

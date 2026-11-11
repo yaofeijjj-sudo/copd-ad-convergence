@@ -1,4 +1,4 @@
-# Advice 2.6 (DESIGN.md): Axis A vs (1) random sets matched on cohort expression and single-cell myeloid specificity,
+# Advice 2.6: Axis A vs (1) random sets matched on cohort expression and single-cell myeloid specificity,
 # (2) pre-specified independent myeloid identity / function signatures. Score model = adopted replication model.
 # Run from project root:
 #   LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs_deconv_20261002:_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_myeloid_reference_20261019/code/01_myeloid_reference.R

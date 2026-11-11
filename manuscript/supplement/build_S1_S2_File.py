@@ -75,8 +75,8 @@ for row in toc.iter_rows(min_row=5):
 wb.save(OUT / "S2_File.xlsx")
 
 # ---- S1 File: Fig A = the earlier soft-threshold figures (vector, unchanged) stacked with a/b labels; Fig B = S2_Fig ----
-SOFT = [(R / "WGCNA_全部图件/01_COPD_软阈值与平均连接度.pdf", "a", "COPD lung network (GSE76925)"),
-        (R / "WGCNA_全部图件/02_AD_软阈值与平均连接度.pdf", "b", "AD DLPFC network (GSE33000)")]
+SOFT = [(R / "WGCNA_figures/01_COPD_soft_threshold_connectivity.pdf", "a", "COPD lung network (GSE76925)"),
+        (R / "WGCNA_figures/02_AD_soft_threshold_connectivity.pdf", "b", "AD DLPFC network (GSE33000)")]
 panels = ",".join(f'("{p}", "{t}", "{n}")' for p, t, n in SOFT)
 swift = f"""
 import PDFKit

@@ -1,76 +1,9 @@
-# Axis A 与一般髓系参照的比较（2026-10-19）
+# Myeloid signatures and functional gene sets
 
-依据：修改意见 2.6；设计见 [DESIGN.md](DESIGN.md)，运行前写定（SHA-256 见 `DESIGN.sha256`）。**稿件未修改，候选结果。**
+Adds myeloid signatures and functional gene sets to the disease-association model and compares Axis A with random sets matched for expression and myeloid specificity.
 
-模型与已采用的复现模型完全相同，7 个独立队列的基础效应逐位重现（GSE48350 按 10-19 决定去掉 GSM1176257）。检验队列为 GSE47460（肺）和 6 个 AD 队列。
+**Used in:** Fig 6b, Table I
 
-## 结论
-
-1. **与“同等髓系特异、同等表达量”的随机基因相比**，Axis A 的疾病效应略大，按预设规则达到 P < 0.05，但幅度有限。
-2. **与已发表的小胶质身份签名相比**，Axis A 没有附加信息：两者评分高度相关（r = 0.88–0.97），疾病效应相近；调整其中任何一个后，Axis A 的效应都接近 0。
-3. 合起来看，在组织水平，Axis A 的表现相当于一个核心的小胶质/巨噬细胞身份程序。它比随机挑出的同等髓系特异基因更贴近疾病，但不超出精心整理的小胶质签名。按修改意见 2.6，新意应落在“同一固定程序在两种疾病、多个独立队列中复现”以及组成解释上，不宜强调 Axis A 超出一般髓系身份。
-4. 遗传层面的结论不同：条件 MAGMA 显示，Axis A 的 AD 遗传富集在控制 BRETIGEA 或 Patir 小胶质基因集后仍然存在（见 `AxisA_auxiliary_checks_20261019`）。也就是说，表达上 Axis A 与一般小胶质签名分不开，但遗传上它承载了超出一般小胶质基因的 AD 风险。
-
-## 第 1 部分：同时匹配表达量与髓系特异性（[matched_null_empirical_p.tsv](results/matched_null_empirical_p.tsv)）
-
-- **特异性来源**：独立单细胞参考（CIBERSORTx 参考矩阵）。Axis A 成员的特异性中位数：肺 0.40、脑 0.81；全部基因的中位数：肺 0.10、脑 0.10。
-- **抽样**：每个队列抽 1,000 个随机集，按 10 个表达箱 × 5 个特异性箱匹配。每个格子的候选池至少是所需数量的 10 倍（[matched_null_qa.tsv](qa/matched_null_qa.tsv)）。
-- 经验 P 为单侧，即随机集效应 ≥ Axis A 效应的比例。
-
-| 队列 | Axis A 效应（SD） | 随机集中位数 | 经验 P（表达 + 特异性） | 经验 P（只匹配表达，原结果） |
-|---|---|---|---|---|
-| **肺 GSE47460** | 0.44 | 0.22 | **0.040** | 0.038 |
-| **AD 合并（DL）** | 0.49 | 0.33 | **0.033** | — |
-| GSE84422 | 0.15 | 0.12 | 0.44 | 0.93 |
-| GSE118553 | 0.46 | 0.26 | 0.29 | 0.19 |
-| GSE313307 | 0.33 | 0.31 | 0.45 | 0.22 |
-| GSE140841 | 0.76 | 0.30 | 0.001 | 0.002 |
-| GSE48350 | 1.04 | 0.75 | 0.085 | 0.008* |
-| GSE36980 | 0.07 | 0.17 | 0.69 | 0.95 |
-
-\* 原结果包含重复芯片 GSM1176257。
-
-**要点**：
-- 同等髓系特异的随机基因集，本身就会随疾病升高（AD 合并中位数 0.33），说明组织中髓系信号整体增强，这与 CIBERSORTx 的组成解释一致。
-- Axis A 比它们略高，但差距有限：P 值为 0.03–0.04，单个 AD 队列多数不显著。
-
-## 第 2 部分：独立来源的签名（[signature_models_AD_pooled.tsv](results/signature_models_AD_pooled.tsv)、[signature_models_by_cohort.tsv](results/signature_models_by_cohort.tsv)）
-
-签名在看结果前固定，与 Axis A 的重叠见 [signature_manifest.tsv](results/signature_manifest.tsv)。
-
-| 签名（与 Axis A 重叠） | 签名本身：肺 / AD 合并 | 与 Axis A 的 r（肺 / AD 中位数） | 调整签名后 Axis A：肺 / AD 合并 | 去掉共有成员后：肺 / AD 合并 |
-|---|---|---|---|---|
-| BRETIGEA 小胶质前 250（49） | 0.50 / 0.44 | 0.88 / 0.94 | −0.01 / 0.09（0.05–0.14） | 0.07 / 0.18 |
-| Patir 2019 核心小胶质（61） | 0.48 / 0.48 | 0.97 / 0.97 | −0.04 / 0.00 | −0.05 / 0.07 |
-| Travaglini 2020 肺巨噬细胞（24） | 0.18 / 0.34 | 0.61 / 0.87 | **0.33 / 0.22** | **0.39 / 0.30** |
-| GO 补体激活（5） | 0.66 / 0.15 | 0.67 / 0.82 | 0.01 / **0.30** | 0.15 / **0.39** |
-| GO 吞噬作用（16） | 0.33 / 0.45 | 0.83 / 0.93 | 0.17 / 0.08 | 0.25 / 0.12 |
-
-单位为 SD；联合模型中签名评分的 VIF 为 1.1–1.6。
-
-**要点**：
-- **两个小胶质签名**的疾病效应和 Axis A 几乎相同，而且两侧器官都如此；调整后 Axis A 的效应基本消失。它们与 Axis A 测的是同一根“小胶质/髓系身份”轴。
-- **肺巨噬细胞签名**（Travaglini）的疾病效应较弱；调整它之后，Axis A 仍保留效应。Axis A 更接近小胶质样的核心髓系程序，而不是肺泡巨噬细胞特有的身份基因。
-- **补体与吞噬**：肺中补体激活集的效应大于 Axis A，AD 中则较弱。Axis A 不能被这两个功能集完全替代，但证据不一致，不宜单独强调“补体–吞噬的增量意义”（修改意见 2.6 的条件）。
-
-## 对稿件的含义
-
-- 定位为“可复现的核心髓系（小胶质样）转录程序”。可以写“其疾病效应略大于同等髓系特异的随机基因集”，但要同时写明它与已发表的小胶质身份签名高度一致。
-- 讨论中的新意依次为：
-  1. 同一固定程序在 COPD 肺和 AD 脑的多个独立队列中复现；
-  2. 组织水平的升高主要随髓系细胞信号变化（组成解释）；
-  3. 遗传上承载超出一般小胶质基因的 AD 风险，而 COPD 侧没有，即遗传不对称。
-
-## 限制
-
-- 特异性来自每类 250–300 个细胞的参考；两个器官的目标类定义不同（肺 Myeloid，脑 Immune）。
-- 每个队列只抽 1,000 次，经验 P 的最小值为 0.001；P 在 0.03–0.04 附近，存在抽样波动。
-- 同时匹配表达量与特异性在表达评分检验中没有直接先例，属于基于第一性原理的提议（见 DESIGN.md）。
-
-## 运行
-
-```
-LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs_deconv_20261002:_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_myeloid_reference_20261019/code/01_myeloid_reference.R
-```
-
-从项目根目录运行。日志：[run_01.log](qa/run_01.log)。
+| Script | Content |
+| --- | --- |
+| [`01_myeloid_reference.R`](code/01_myeloid_reference.R) | signature models and matched random sets |

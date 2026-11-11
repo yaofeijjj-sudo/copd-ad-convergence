@@ -1,4 +1,4 @@
-# Duplicate-donor check across cohorts (DESIGN.md section 3).
+# Duplicate-donor check across cohorts.
 # (1) metadata fingerprints: identical age + sex + diagnosis (lung: + FEV1 % predicted) across cohorts;
 # (2) doppelgangR 1.38.0 (Waldron et al. 2016 JNCI), default arguments except cache.dir = NULL and serial execution.
 # Run from project root:
@@ -6,7 +6,7 @@
 suppressPackageStartupMessages({ library(data.table); library(edgeR); library(Biobase); library(doppelgangR); library(BiocParallel) })
 OUT <- "03_candidate_analysis/AxisA_member_direction_robustness_20261018"
 coh <- readRDS(file.path(OUT, "source_data/cohorts.rds"))$cohorts
-e1 <- new.env(); load("WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData", envir = e1)
+e1 <- new.env(); load("WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData", envir = e1)
 e2 <- new.env(); load("01_Results_and_Methods/01_Figure1_WGCNA/analysis/02_brain_wgcna/results/AD_WGCNA_no_residual_after_age_outlier/ad_wgcna_final_env.RData", envir = e2)
 sex_std <- function(x) { x <- toupper(substr(trimws(as.character(x)), 1, 1)); fifelse(x %in% c("M", "1"), "M", fifelse(x %in% c("F", "0", "2"), "F", NA_character_)) }
 pheno <- function(k) { d <- copy(coh[[k]]$dat)

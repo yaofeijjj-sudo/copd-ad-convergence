@@ -1,5 +1,5 @@
 suppressPackageStartupMessages({library(data.table);library(ggplot2);library(grid)})
-root<-normalizePath(getwd());out<-file.path(root,'细胞定位/SYN01_Entrez_downstream_20261001')
+root<-normalizePath(getwd());out<-file.path(root,'cell_localization/SYN01_Entrez_downstream_20261001')
 draw_one<-function(organ,file,expected,n_groups,xmax,title,palette){
 d<-fread(file.path(out,'source_data',file));d[,annotation:=original_annotation]
 labelmap<-setNames(unique(d$annotation),unique(d$annotation))

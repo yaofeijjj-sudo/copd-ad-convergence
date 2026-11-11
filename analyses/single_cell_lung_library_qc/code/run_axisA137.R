@@ -5,7 +5,7 @@
 # Run from project root: Rscript 03_candidate_analysis/Lung_sc_library_QC_check_20261028/code/run_axisA137.R
 suppressPackageStartupMessages(library(data.table))
 O <- "03_candidate_analysis/Lung_sc_library_QC_check_20261028/results"
-lib_med <- fread("细胞定位/SYN01_Entrez_downstream_20261001/results/lung/tables/axisA_library_broad_medians.tsv")[broad_celltype == "Myeloid"]
+lib_med <- fread("cell_localization/SYN01_Entrez_downstream_20261001/results/lung/tables/axisA_library_broad_medians.tsv")[broad_celltype == "Myeloid"]
 flagged <- fread(file.path(O, "library_qc_with_flag.tsv"))[flagged == TRUE]$gsm
 stopifnot(length(flagged) == 2)
 run <- function(l, lab) {  # same aggregation as lung_rank_and_scores.R: library median, then median across a donor's libraries, >= 20 cells

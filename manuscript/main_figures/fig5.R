@@ -1,14 +1,14 @@
 # Fig 5. Within-cell tests and the relation of Axis A to the estimated cell proportion.
 # Sources (frozen, not recomputed):
 #   03_candidate_analysis/Lung_sc_donor_merge_20261029/results/tables/axisA_donor_broad_medians.tsv (a; Table F a; 55 donors, cood8 = copd8)
-#   细胞定位/SYN01_Entrez_downstream_20261001/source_data/Disease_Brain_MicroPVM2_CPS_scatter.tsv (b; 79 donors)
+#   cell_localization/SYN01_Entrez_downstream_20261001/source_data/Disease_Brain_MicroPVM2_CPS_scatter.tsv (b; 79 donors)
 #   Lung_sc_donor_merge_20261029 pseudobulk_fry_camera.tsv, AM_pseudobulk_fry_camera.tsv (c, former Fig 3i)
 #   03_candidate_analysis/CIBERSORTx_composition_adjustment_20261018/results/adjusted_models_{by_cohort,AD_pooled}.tsv,
 #     version B = reference without the 137 Axis A genes (d, former Fig 3j)
 #   source_data/Fig5e_samples.tsv, Fig5f_proportion_difference.tsv (e, f; 00_composition_samples.R reproduces Table G d)
 # Designs: a = coloured raincloud of the localization figure; c, d unchanged; f = table forest of the 10-05 Figure 4d.
 source("06_resubmission_20261008/code/main_figures/common.R")
-SC <- "细胞定位/SYN01_Entrez_downstream_20261001/source_data"
+SC <- "cell_localization/SYN01_Entrez_downstream_20261001/source_data"
 LM <- "03_candidate_analysis/Lung_sc_donor_merge_20261029/results/tables"
 CTRL <- "#8A929B"; CASE <- COL$axisA
 

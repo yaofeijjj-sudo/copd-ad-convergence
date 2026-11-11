@@ -3,7 +3,7 @@
 # post-QC median mitochondrial percentage exceeds the median + 3 MAD across the 65 libraries (log scale).
 # Run from project root: Rscript 03_candidate_analysis/Lung_sc_library_QC_check_20261028/code/run.R
 suppressPackageStartupMessages(library(data.table))
-SC <- "细胞定位/analysis/06_single_cell_projection/results/GSE302339_axisA_official_ucell_20260903_candidate"
+SC <- "cell_localization/analysis/06_single_cell_projection/results/GSE302339_axisA_official_ucell_20260903_candidate"
 O <- "03_candidate_analysis/Lung_sc_library_QC_check_20261028/results"
 lib <- fread(file.path(SC, "tables/qc_library_summary.tsv"))
 thr <- dcast(fread(file.path(SC, "qa/qc_thresholds_by_library.tsv")), gsm ~ filter, value.var = c("lower", "higher"))

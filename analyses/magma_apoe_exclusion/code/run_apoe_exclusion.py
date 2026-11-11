@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # APOE-region exclusion sensitivity for the current (SYN01, Axis A=137 / Axis B=434) AD MAGMA test.
 # Region: APOE (Entrez 348) gene boundaries +/- 1 Mb, NCBI37.3 -- the definition pre-specified in the
-# 2026-07-15 protocol (GWAS和外周血/analysis/05_disease_specificity_gwas/.../preanalysis_protocol_20260715.md §8)
+# 2026-07-15 protocol (GWAS_and_blood/analysis/05_disease_specificity_gwas/.../preanalysis_protocol_20260715.md §8)
 # and implemented in 44_run_current_axes_locus_influence_sensitivities_20260715.R.
 #   V1 set_only     : region genes removed from the Axis sets; background unchanged (July implementation).
 #   V2 whole_region : region genes removed from the whole analysis (MAGMA v1.10 --settings gene-exclude).
@@ -10,7 +10,7 @@ import csv, json, os, subprocess, hashlib
 
 R = Path('.')
 O = R / '03_candidate_analysis/AxisA_MAGMA_APOE_exclusion_20261016'
-SYN = R / 'GWAS和外周血/SYN01_Entrez_downstream_20261001'
+SYN = R / 'GWAS_and_blood/SYN01_Entrez_downstream_20261001'
 TOOL = R / '_workspace/project_tools/external_tools/magma_v1.10_official'
 MAGMA = TOOL / 'magma_v1.10_mac/magma'
 GENE_LOC = TOOL / 'NCBI37/NCBI37.3.gene.loc'

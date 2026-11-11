@@ -1,4 +1,4 @@
-# GSE302339 single-cell reference for CIBERSORTx (DESIGN.md): 300 QC cells per broad type, balanced across donors,
+# GSE302339 single-cell reference for CIBERSORTx: 300 QC cells per broad type, balanced across donors,
 # raw UMI counts, gene symbols; version A (all genes) and version B (137 Axis A genes removed).
 # Run from project root:
 #   R_LIBS=_workspace/r_libs_deconv_20261002:_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/CIBERSORTx_composition_adjustment_20261018/code/01_lung_reference.R
@@ -6,7 +6,7 @@ suppressPackageStartupMessages({ library(data.table); library(Matrix); library(h
 OUT <- "03_candidate_analysis/CIBERSORTx_composition_adjustment_20261018"
 for (d in c("upload", "qa", "results", "source_data")) dir.create(file.path(OUT, d), showWarnings = FALSE)
 H5 <- "_workspace/gse302339_axisA_20260903/10x_h5"; N_PER <- 300; set.seed(20261018)
-cells <- fread("细胞定位/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz", select = c("gsm", "barcode", "subject_id", "broad_celltype", "passes_QC"))
+cells <- fread("cell_localization/SYN01_Entrez_downstream_20261001/results/lung/objects/axisA_cell_scores.tsv.gz", select = c("gsm", "barcode", "subject_id", "broad_celltype", "passes_QC"))
 cells <- cells[passes_QC == TRUE & broad_celltype != "Other/Progenitor"]
 ledger <- fread("01_current_analysis/01_storyline_current/06_single_cell_projection/results/GSE302339_axisA_official_ucell_20260903_candidate/tables/sample_ledger.tsv")[matrix_available == TRUE]
 # donor-balanced draw: random order within donor, then take cells round-robin across donors

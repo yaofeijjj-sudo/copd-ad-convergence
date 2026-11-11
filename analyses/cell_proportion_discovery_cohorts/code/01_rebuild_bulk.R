@@ -5,7 +5,7 @@ suppressPackageStartupMessages({library(Biobase);library(data.table);library(GEO
 OUT <- '03_candidate_analysis/Deconvolution_composition_adjustment_20261002'
 MAX_MISSING_FRACTION <- 0.20
 
-## ---- copied verbatim from WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/code/15_final_wgcna_copd_ad.R ----
+## ---- copied verbatim from WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/code/15_final_wgcna_copd_ad.R ----
 numeric_clean <- function(x) {
   suppressWarnings(as.numeric(gsub("[^0-9.+-]", "", as.character(x))))
 }
@@ -66,7 +66,7 @@ gl <- getGEO(filename='02_data/raw/bulk_lung_copd/GSE76925_series_matrix.txt.gz'
 el <- normalize_microarray_matrix(exprs(gl))
 sym_l <- gpl_col('GPL10558_original_platform_table_20260930.tsv','Symbol',rownames(exprs(gl)))[match(rownames(el),rownames(exprs(gl)))]
 ml <- collapse_probes_to_genes(el, sym_l, gene_symbol=sym_l, select_by='variance')
-lung_used <- fread('WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/sample_table_used.csv')
+lung_used <- fread('WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/sample_table_used.csv')
 L <- ml$expr[, lung_used$sample_id]
 
 ## Brain GSE33000
@@ -81,7 +81,7 @@ brain_used <- fread('01_Results_and_Methods/01_Figure1_WGCNA/analysis/02_brain_w
 B <- mb$expr[, brain_used$sample_id]
 
 ## Verify against saved network matrices
-e1 <- new.env(); load('WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData',envir=e1)
+e1 <- new.env(); load('WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData',envir=e1)
 e2 <- new.env(); load('01_Results_and_Methods/01_Figure1_WGCNA/analysis/02_brain_wgcna/results/AD_WGCNA_no_residual_after_age_outlier/ad_wgcna_final_env.RData',envir=e2)
 dl <- max(abs(t(L[colnames(e1$dat_expr),rownames(e1$dat_expr)]) - e1$dat_expr))
 db <- max(abs(t(B[colnames(e2$dat_expr),rownames(e2$dat_expr)]) - e2$dat_expr))

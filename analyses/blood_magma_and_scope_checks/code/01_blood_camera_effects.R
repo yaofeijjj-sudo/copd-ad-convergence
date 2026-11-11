@@ -1,4 +1,4 @@
-# Advice 3.1 (DESIGN.md): CAMERA on the fixed Axis A set, subject-level Axis A score differences, AddNeuroMed duplicate check.
+# Advice 3.1: CAMERA on the fixed Axis A set, subject-level Axis A score differences, AddNeuroMed duplicate check.
 # Data loading and models reuse the SYN01 / 10-16 blood code; baseline t must equal the frozen SYN01 statistics.
 # Run from project root:
 #   LC_ALL=en_US.UTF-8 Rscript 03_candidate_analysis/AxisA_auxiliary_checks_20261019/code/01_blood_camera_effects.R
@@ -7,9 +7,9 @@ suppressPackageStartupMessages({ library(AnnotationDbi); library(Biobase); libra
 options(stringsAsFactors = FALSE)
 ROOT <- normalizePath(getwd())
 O <- file.path(ROOT, "03_candidate_analysis/AxisA_auxiliary_checks_20261019")
-SYN <- file.path(ROOT, "GWAS和外周血/SYN01_Entrez_downstream_20261001")
-OLD <- file.path(ROOT, "GWAS和外周血/current_figure_package/six_blood_models_candidate_20260927")
-dir.create(file.path(O, "sandbox/GWAS和外周血/SYN01_Entrez_downstream_20261001/results"), recursive = TRUE, showWarnings = FALSE)
+SYN <- file.path(ROOT, "GWAS_and_blood/SYN01_Entrez_downstream_20261001")
+OLD <- file.path(ROOT, "GWAS_and_blood/current_figure_package/six_blood_models_candidate_20260927")
+dir.create(file.path(O, "sandbox/GWAS_and_blood/SYN01_Entrez_downstream_20261001/results"), recursive = TRUE, showWarnings = FALSE)
 src <- parse(file.path(SYN, "code/refit_gse248493.R"))
 for (e in src) if (is.call(e) && identical(e[[1]], as.name("<-")) && is.call(e[[3]]) && identical(e[[3]][[1]], as.name("function"))) eval(e, globalenv())
 raw_dir <- file.path(ROOT, "02_data/raw/bulk_blood_external")
@@ -22,7 +22,7 @@ stopifnot(length(axis) == 137)
 M <- list(); prep_keep <- list()
 from_syn <- function(prepared, sample_dt) {
   r <- run_limma_contrast(prepared, sample_dt, "age_gender_adjusted", c("age", "gender"))
-  y <- if (identical(prepared$data_type, "rnaseq_counts")) readRDS(file.path(project_root, "GWAS和外周血/SYN01_Entrez_downstream_20261001/results/GSE248493_voom.rds")) else r$expr_sub
+  y <- if (identical(prepared$data_type, "rnaseq_counts")) readRDS(file.path(project_root, "GWAS_and_blood/SYN01_Entrez_downstream_20261001/results/GSE248493_voom.rds")) else r$expr_sub
   list(y = y, design = r$design, contrast = r$contrast, t = r$gene_stats[, .(entrez_id, t)])
 }
 p <- prepare_microarray("GSE54837"); M$GSE54837 <- from_syn(p, sample_table_gse54837(p))
@@ -32,7 +32,7 @@ p <- prepare_microarray("GSE63061"); M$GSE63061 <- from_syn(p, sample_table_addn
 rm(p); gc()
 local({  # E-MTAB-5278, as refit_emtab5278.R / 10-16 code
   raw <- file.path(raw_dir, "E-MTAB-5278_20260929")
-  s <- fread(file.path(ROOT, "GWAS和外周血/current_figure_package/replacement_age_sex_EMTAB5278_20260929/sample_manifest_emtab5278.csv"))[include_primary == TRUE]; stopifnot(nrow(s) == 109L)
+  s <- fread(file.path(ROOT, "GWAS_and_blood/current_figure_package/replacement_age_sex_EMTAB5278_20260929/sample_manifest_emtab5278.csv"))[include_primary == TRUE]; stopifnot(nrow(s) == 109L)
   s[, group := factor(group, levels = c("Control", "Case"))]; s[, sex := factor(sex, levels = c("F", "M"))]
   mf <- file.path(raw, "H1_QASMC_Blood_Hs_MRNA_normMatrix.txt"); header <- strsplit(readLines(mf, n = 1L), "\t", fixed = TRUE)[[1]]
   m <- fread(mf, skip = 2L, header = FALSE); setnames(m, header); setnames(m, "Hybridization Name", "gene_symbol")

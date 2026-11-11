@@ -1,4 +1,4 @@
-"""Build S1-S13 Table (PLOS ONE numbering of the 10-19 Chinese manuscript, captions at the end of 论文全文_简体中文.md).
+"""Build S1-S13 Table (PLOS ONE numbering of the 10-19 Chinese manuscript, captions at the end of the Chinese manuscript).
 
 Formatting only: every value is copied from a frozen result file (or from the previous, still-valid supplementary table);
 the only computation is the DerSimonian-Laird pooled row of S4 Table, which is checked against the adopted result.
@@ -17,7 +17,7 @@ OLD = R / "99_deprecated_archive/20261023_supplement_old_numbering"   # previous
 C = R / "03_candidate_analysis"
 REF = R / "05_github_release/copd-ad-convergence/validation/reference"
 SRC = R / "06_resubmission_20261008/code/main_figures/source_data"
-WG = R / "WGCNA_全部图件/复现资料/analysis/02_brain_wgcna/results/T04_AD_age_outlier_fixed_module_sensitivity_20260724/tables"
+WG = R / "WGCNA_figures/reproduction_materials/analysis/02_brain_wgcna/results/T04_AD_age_outlier_fixed_module_sensitivity_20260724/tables"
 BC = C / "AxisA_blood_composition_adjustment_20261016/results"
 
 

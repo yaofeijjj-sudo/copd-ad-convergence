@@ -1,6 +1,6 @@
 # Main figures 1–8
 
-The scripts draw each figure from the result tables and write the plotted values to [`source_data/`](source_data/). They do not recompute statistics, except for the two export steps below, which reuse the code of their analyses and assert the reported numbers.
+Each script draws one figure from the result tables and writes its plotted values to [`source_data/`](source_data/).
 
 | Script | Figure | Panels |
 | --- | --- | --- |
@@ -15,20 +15,8 @@ The scripts draw each figure from the result tables and write the plotted values
 | [`00_member_effects.R`](00_member_effects.R) | Fig 3d | Exports member-level effects of the adopted sample set (asserts 110 / 5 / 22 / 34) |
 | [`00_composition_samples.R`](00_composition_samples.R) | Fig 5e–f | Exports sample scores and proportions and the proportion differences with 95% CI |
 
-[`common.R`](common.R) holds the shared theme (Arial, 8 pt text, 12 pt panel labels), the table-style forest plot, millimetre-based panel placement and the PDF device. PDFs are written with the Quartz device; [`tools/merge_tj_text_runs.py`](tools/merge_tj_text_runs.py) then merges sub-1/1000 em kerning so that each phrase is one text object, and [`qa/textrun_audit.py`](qa/textrun_audit.py) checks fonts, sizes and text objects. Submitted TIFF files were rendered from the PDFs at 600 dpi (RGB, LZW).
-
-Panel-by-panel links to the analysis code are in [`by_figure/`](../../by_figure/README.md).
+[`common.R`](common.R): shared theme and layout. [`tools/`](tools/) and [`qa/`](qa/): PDF text post-processing and checks. Panel-by-panel links: [`by_figure/`](../../by_figure/README.md).
 
 ## Run
 
-From the project root, with the R environment of the study:
-
-```sh
-Rscript 06_resubmission_20261008/code/main_figures/00_member_effects.R
-Rscript 06_resubmission_20261008/code/main_figures/00_composition_samples.R
-for f in fig1 fig2 fig3 fig4 fig5 fig6 fig7 fig8; do
-  Rscript 06_resubmission_20261008/code/main_figures/$f.R
-done
-```
-
-The path `06_resubmission_20261008/code/main_figures/` is this folder; the path mapping is given in the repository [README](../../README.md#code-by-analysis).
+From the project root: run `00_member_effects.R` and `00_composition_samples.R`, then `fig1.R` … `fig8.R`.

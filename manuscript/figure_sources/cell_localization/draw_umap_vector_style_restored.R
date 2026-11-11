@@ -1,14 +1,14 @@
 suppressPackageStartupMessages({library(data.table);library(grid)})
-root<-normalizePath(getwd());out<-file.path(root,'细胞定位/SYN01_Entrez_downstream_20261001')
+root<-normalizePath(getwd());out<-file.path(root,'cell_localization/SYN01_Entrez_downstream_20261001')
 args<-commandArgs(trailingOnly=TRUE);organs<-if(length(args))args else c('Lung','Brain')
 for(organ in organs){
 if(organ=='Brain'){
- src<-file.path(root,'细胞定位/brain_umap_reference_20260918/source_data/brain_umap_cells.tsv.gz')
+ src<-file.path(root,'cell_localization/brain_umap_reference_20260918/source_data/brain_umap_cells.tsv.gz')
  d<-fread(src);stopifnot(nrow(d)==1357145)
  z<-fread(file.path(out,'results/brain_work/broad_ucell_v1/cell_scores.tsv'),select=c('cell_id','axisA_full_measured_ucell'));stopifnot(nrow(z)==nrow(d),!anyDuplicated(z$cell_id));idx<-match(d$cell_id,z$cell_id);stopifnot(!anyNA(idx));d[,score:=z$axisA_full_measured_ucell[idx]]
  palette<-c('Immune'='#F04438','Astrocyte'='#F28C45','Endothelial'='#DDB34B','Excitatory neurons'='#52B7A5','Inhibitory neurons'='#4C9FC4','OPC'='#8571C4','Oligodendrocyte'='#D76E98','VLMC & Perivascular'='#8DA85D')
 }else{
- src<-file.path(root,'细胞定位/lung_umap_reference_20260922/source_data/lung_umap_cells.tsv.gz')
+ src<-file.path(root,'cell_localization/lung_umap_reference_20260922/source_data/lung_umap_cells.tsv.gz')
  d<-fread(src);stopifnot(nrow(d)==211464)
  z<-fread(file.path(out,'results/lung/objects/axisA_cell_scores.tsv.gz'),select=c('cell_id','AxisA_UCell'));stopifnot(nrow(z)==nrow(d),!anyDuplicated(z$cell_id));idx<-match(d$cell_id,z$cell_id);stopifnot(!anyNA(idx));d[,`:=`(score=z$AxisA_UCell[idx],group=broad_celltype)]
  palette<-c('Myeloid'='#F04438','Epithelial'='#F28C45','Endothelial'='#DDB34B','T/NK'='#52B7A5','B/Plasma'='#8571C4','Stromal'='#D76E98','Other/Progenitor'='#AEB5BF')

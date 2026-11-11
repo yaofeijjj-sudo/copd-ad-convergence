@@ -1,14 +1,14 @@
-# Advice 3.2 (DESIGN.md): (a) four MAGMA tests reproduced, then rerun with the background restricted to the 4,832 shared
+# Advice 3.2: (a) four MAGMA tests reproduced, then rerun with the background restricted to the 4,832 shared
 # network-eligible genes (MAGMA v1.10 --settings gene-include); (b) AD test conditional on Patir 2019 core microglia (249 genes).
 # Run from project root:
 #   LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs Rscript 03_candidate_analysis/AxisA_auxiliary_checks_20261019/code/03_magma_background_patir.R
 suppressPackageStartupMessages({ library(data.table); library(AnnotationDbi); library(org.Hs.eg.db) })
 O <- "03_candidate_analysis/AxisA_auxiliary_checks_20261019"; for (d in c("magma", "inputs", "logs")) dir.create(file.path(O, d), FALSE)
 magma <- "_workspace/project_tools/external_tools/magma_v1.10_official/magma_v1.10_mac/magma"
-raw <- c(AD = "GWAS和外周血/SYN01_Entrez_downstream_20261001/results/magma/AD_total_N.genes.raw",
-         COPD = "GWAS和外周血/analysis/05_disease_specificity_gwas/results/current_axes_minimal_ad_copd_magma_20260802/magma/GCST90244098.genic_only.genes.raw")
-sets_f <- "GWAS和外周血/SYN01_Entrez_downstream_20261001/results/magma_inputs/locked_axes.sets"
-frozen <- fread("GWAS和外周血/SYN01_Entrez_downstream_20261001/results/magma_four_tests.csv")
+raw <- c(AD = "GWAS_and_blood/SYN01_Entrez_downstream_20261001/results/magma/AD_total_N.genes.raw",
+         COPD = "GWAS_and_blood/analysis/05_disease_specificity_gwas/results/current_axes_minimal_ad_copd_magma_20260802/magma/GCST90244098.genic_only.genes.raw")
+sets_f <- "GWAS_and_blood/SYN01_Entrez_downstream_20261001/results/magma_inputs/locked_axes.sets"
+frozen <- fread("GWAS_and_blood/SYN01_Entrez_downstream_20261001/results/magma_four_tests.csv")
 bg <- fread("03_candidate_analysis/WGCNA_original_modules_Entrez_correction_20261001/results/cross/shared_all_module_gene_ids.csv", colClasses = "character")$entrez_id
 stopifnot(length(bg) == 4832); bg_f <- file.path(O, "inputs/background_4832_shared_ids.txt"); writeLines(bg, bg_f)
 sets <- lapply(strsplit(readLines(sets_f), "\t"), function(x) x[-1]); names(sets) <- sapply(strsplit(readLines(sets_f), "\t"), `[`, 1)

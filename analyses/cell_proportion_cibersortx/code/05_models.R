@@ -1,4 +1,4 @@
-# Composition adjustment of the Axis A score with CIBERSORTx fractions (DESIGN.md "下游模型").
+# Composition adjustment of the Axis A score with CIBERSORTx fractions.
 # Base model = adopted replication model (prep()/score_eff() copied from
 # AxisA_member_direction_robustness_20261018/code/02_member_effects_and_sensitivity.R); the base effects are checked against
 # that branch before any adjustment. Inputs: results/raw/<version>_<cohort>.tsv (CIBERSORTx web output, relative mode, S-mode).
@@ -69,7 +69,7 @@ pool <- res[cohort %in% AD, cbind(dl(effect_SD, se), n_total = sum(n)), by = .(v
 pool[, base := pool[model == "base" & version == .BY$version]$effect_SD, by = version][, pct_change := 1 - effect_SD / base]
 
 # discovery GSE76925: source module red eigengene (Figure 2d model), as in the 10-02 dtangle branch
-e1 <- new.env(); load(P("WGCNA_全部图件/复现资料/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData"), envir = e1)
+e1 <- new.env(); load(P("WGCNA_figures/reproduction_materials/analysis/01_lung_wgcna/results/COPD_WGCNA/copd_wgcna_final_env.RData"), envir = e1)
 ld <- as.data.table(e1$clinical_train); ld[, red := e1$MEs[sample_id, "MEred"]]
 red <- list()
 for (v in VERS) { fr <- read_frac(v, "GSE76925"); d <- merge(ld, fr$tab, by.x = "sample_id", by.y = "sample"); stopifnot(nrow(d) == nrow(ld))

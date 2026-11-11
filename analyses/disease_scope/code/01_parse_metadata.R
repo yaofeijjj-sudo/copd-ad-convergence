@@ -1,4 +1,4 @@
-# Parse GEO sample characteristics for the comparator datasets (design: ../DESIGN.md).
+# Parse GEO sample characteristics for the comparator datasets.
 # Run from project root: _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_disease_specificity_redesign_20261003/code/01_parse_metadata.R
 suppressPackageStartupMessages(library(data.table))
 RAW <- "02_data/raw/disease_specificity_tissue_20261003"

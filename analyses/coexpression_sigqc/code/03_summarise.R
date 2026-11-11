@@ -1,4 +1,4 @@
-# Summaries of the sigQC run, the pre-specified expression-matched null and the gene-level table. Design: ../DESIGN.md.
+# Summaries of the sigQC run, the pre-specified expression-matched null and the gene-level table.
 # Run from project root after 02_run_sigqc.R:
 #   R_LIBS=_workspace/r_libs_sigqc:_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_sigQC_coherence_20261014/code/03_summarise.R
 suppressPackageStartupMessages(library(data.table))

@@ -1,10 +1,10 @@
-# Donor-level COPD vs control tests of Axis A within alveolar macrophages (DESIGN.md, frozen 2026-10-28).
+# Donor-level COPD vs control tests of Axis A within alveolar macrophages.
 # Pseudobulk: edgeR filterByExpr + TMM + estimateDisp + fry; voom + CAMERA (inter.gene.cor = NA).
 # UCell: library median -> donor median; two-sided Wilcoxon with Hodges-Lehmann shift and 95% CI.
 suppressPackageStartupMessages({library(data.table);library(edgeR);library(limma)})
 ROOT <- '.'
 OUT <- file.path(ROOT,'03_candidate_analysis/AxisA_AM_pseudobulk_20261028')
-SYN <- file.path(ROOT,'细胞定位/SYN01_Entrez_downstream_20261001/results')
+SYN <- file.path(ROOT,'cell_localization/SYN01_Entrez_downstream_20261001/results')
 CELLS <- file.path(SYN,'lung/objects/axisA_cell_scores.tsv.gz')
 FLAG <- file.path(ROOT,'03_candidate_analysis/Lung_sc_library_QC_check_20261028/results/library_qc_with_flag.tsv')
 z <- function(x) (x-mean(x))/sd(x)
@@ -73,7 +73,7 @@ UC <- rbindlist(list(
  run_ucell('reference: Myeloid (S6 Table)','Myeloid')))
 pbr <- rbindlist(lapply(PB,`[[`,'row')); genes <- rbindlist(lapply(PB,`[[`,'genes'))
 
-# Reference rows must reproduce S6 Table (DESIGN.md section 4).
+# Reference rows must reproduce S6 Table.
 ref_pb <- pbr[class=='Myeloid']; ref_uc <- UC[class=='Myeloid']
 chk <- c(fry=abs(ref_pb$fry_p-0.1151250275), camera=abs(ref_pb$camera_p-0.0561733203), wilcoxon=abs(ref_uc$wilcoxon_p-0.01032))
 print(chk); stopifnot(chk[1:2]<1e-6, chk[3]<5e-5)

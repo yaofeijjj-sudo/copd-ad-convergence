@@ -3,8 +3,8 @@
 #   03_candidate_analysis/CellOracle_ranking_scale_20261019/results/all357_TF_ranking.tsv (b, c)
 #   03_candidate_analysis/CellOracle_ranking_scale_20261019/results/Fig6def_source_signed_logratio.tsv (d, e = STAT3, CEBPB; delta_X on the ln scale)
 #   tf_activity_all.tsv.gz in CO (f; primary models, full CollecTRI; lung rows rerun 10-29, brain rows from SingleCell_pseudobulk_supplements_20261019)
-# Designs follow the 10-05 figure.af old Fig 6: a = 虚拟敲除/CellOracle_独立方法插图_纵向强化版_20260923 (redrawn at final size),
-# b = Figure6_rank候选_20260925 (two stacked organ panels, grid lines, blue labelled TFs), c = lollipop, d, e = zero-line scatter.
+# Designs follow the 10-05 figure.af old Fig 6: a = virtual_knockout/CellOracle_method_schematic_20260923 (redrawn at final size),
+# b = Figure6_rank_candidate_20260925 (two stacked organ panels, grid lines, blue labelled TFs), c = lollipop, d, e = zero-line scatter.
 source("06_resubmission_20261008/code/main_figures/common.R")
 CO <- "03_candidate_analysis/Lung_sc_donor_merge_20261029/results/tables"  # 10-29: lung donor means with cood8 -> copd8 (55 donors); brain unchanged
 blue <- "#2878B5"; dblue <- "#12486C"; coral <- "#CE513F"; dred <- "#B62F28"; greyp <- "#AEB8C2"; teal <- "#168A87"

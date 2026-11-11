@@ -1,7 +1,7 @@
 """Render the Supplementary Methods of S1 File (parts/S1_File_methods_en.md) to parts/S1_Methods.pdf.
 
 The markdown source holds the complete Methods text moved out of the main manuscript on 2026-10-29; its Chinese master
-is 06_resubmission_20261008/补充方法_简体中文.md. Only headings, paragraphs, *italics*, `code` and [links](url) occur, so
+is the Chinese Supplementary Methods. Only headings, paragraphs, *italics*, `code` and [links](url) occur, so
 a minimal converter is used; the PDF is printed by headless Google Chrome (Times New Roman, 12 pt, US Letter, 1-inch margins, as in the main text since 2026-11-09).
 build_S1_S2_File.py then places these pages before Fig A and Fig B.
 

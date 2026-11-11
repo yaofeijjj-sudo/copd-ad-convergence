@@ -3,12 +3,12 @@
 #   LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs _workspace/envs/r/bin/Rscript 06_resubmission_20261008/code/supplement/build_S1_S2_Fig.R
 source("06_resubmission_20261008/code/main_figures/common.R")
 OUTD <- "06_resubmission_20261008/code/supplement/parts"
-ST <- "WGCNA_全部图件/复现资料/figure_revision_20260915_Arial8_PDF/source_data"
-EN <- "富集分析/SYN01_Entrez_downstream_20261001/source_data"
+ST <- "WGCNA_figures/reproduction_materials/figure_revision_20260915_Arial8_PDF/source_data"
+EN <- "functional_enrichment/SYN01_Entrez_downstream_20261001/source_data"
 AB <- file.path(CAND, "AxisB_fixed_score_replication_20261019/results")
 
 # ---- S1 Fig (Fig A in S1 File): the earlier soft-threshold figures are reused unchanged --------------------------------
-# WGCNA_全部图件/01_COPD_软阈值与平均连接度.pdf and 02_AD_软阈值与平均连接度.pdf are stacked by build_S1_S2_File.py; here
+# WGCNA_figures/01_COPD_soft_threshold_connectivity.pdf and 02_AD_soft_threshold_connectivity.pdf are stacked by build_S1_S2_File.py; here
 # only check that their source values still give the selected powers (lung 8, brain 12).
 for (f in c("lung_soft_threshold.csv", "brain_soft_threshold.csv")) {
   d <- fread(P(file.path(ST, f))); stopifnot(d[selected == TRUE]$Power == c(lung_soft_threshold.csv = 8, brain_soft_threshold.csv = 12)[[f]])

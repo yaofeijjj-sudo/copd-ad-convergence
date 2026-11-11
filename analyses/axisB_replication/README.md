@@ -1,48 +1,9 @@
-# Axis B 固定评分的独立复现（2026-10-19）
+# Axis B replication
 
-依据：修改意见 5.1；设计见 [DESIGN.md](DESIGN.md)，运行前写定（SHA-256 见 `DESIGN.sha256`）。**稿件未修改，候选结果。**
+Scores Axis B in the independent cohorts with the Axis A workflow.
 
-流程与 Axis A 的复现完全相同，只把基因集换成 434 个 Axis B 成员。同一套函数重现了已采用的 Axis A 效应，7 个独立队列差异均 < 10⁻⁸（[check_axisA_reproduced.tsv](qa/check_axisA_reproduced.tsv)）。GSE47460（0.00）和 GSE84422（−0.64）与 10-02 的结果一致。按作者 10-19 决定，GSE48350 已去掉重复芯片 GSM1176257。
+**Used in:** Fig B
 
-## 结论：按预先写定的规则判为“不稳定”，移入补充材料
-
-判定规则：GSE47460 与 AD 合并效应都为负、且 95% CI 都不含 0，才算稳定（[axisB_verdict.tsv](results/axisB_verdict.tsv)）。
-
-| 分析 | 效应（SD） | 95% CI | P |
-|---|---|---|---|
-| **肺 GSE47460（独立）** | **0.00** | −0.29 至 0.29 | 0.99 |
-| **AD 6 队列合并（DL，主分析）** | **−0.49** | −0.64 至 −0.34 | 1.7 × 10⁻¹⁰ |
-| AD 合并，REML + Hartung–Knapp | −0.49 | −0.68 至 −0.30 | 0.0012 |
-| AD 合并，只用 397 个共同可测成员 | −0.49 | −0.64 至 −0.34 | 2.6 × 10⁻¹⁰ |
-| AD 合并，保留 GSM1176257 | −0.49 | −0.64 至 −0.34 | 2.1 × 10⁻¹⁰ |
-| AD 合并，加入神经元比例（次要） | −0.20 | −0.46 至 0.06 | 0.13 |
-
-- **肺侧没有复现**：独立队列中 Axis B 与 COPD 无关。
-- **AD 侧复现稳定**：6 个队列都为负，异质性 I² = 0。
-- **脑侧的降低大部分随神经元比例变化**：加入 CIBERSORTx 估计的神经元比例（兴奋性 + 抑制性）后，合并效应由 −0.49 变为 −0.20，CI 含 0。这与 10-16 的 S7 Table 一致：Axis B 来源模块的脑侧关联约 94% 随神经元比例变化。
-- **发现队列**（只作描述）：GSE76925 −0.74，GSE33000 −0.98。
-
-各队列结果见 [axisB_by_cohort.tsv](results/axisB_by_cohort.tsv)，可测成员数为 419–434。
-
-## 对稿件的含义
-
-按修改意见 5.1 的不稳定情形处理：Axis B 移入补充材料，并如实写明只有 AD 侧在独立队列中复现，肺侧未复现；脑侧的降低主要随神经元比例变化。
-
-两点写法：
-- Axis A 与 Axis B 方向相反，不能推出两者存在抑制关系。
-- Axis B 富集氧化磷酸化条目，也不直接代表疾病特异机制（修改意见 5.1）。
-
-正文中 Axis B 的定义（图 1、2 的交集）可以保留，作为模块重叠结果的一部分。
-
-## 限制
-
-- 神经元比例来自 CIBERSORTx 相对比例，与评分可能共线；调整只用于解读，不参与判定。
-- 肺侧只有 GSE47460（GPL14550）一个独立队列，未复现不能区分是生物学差异还是队列差异。
-
-## 运行
-
-```
-LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisB_fixed_score_replication_20261019/code/01_axisB_replication.R
-```
-
-从项目根目录运行。日志：[run_01.log](qa/run_01.log)（"stack imbalance" 警告不影响结果，核对见上）。
+| Script | Content |
+| --- | --- |
+| [`01_axisB_replication.R`](code/01_axisB_replication.R) | cohort effects and pooled estimates |

@@ -1,5 +1,4 @@
 # AD reference: all eligible independent frontal-cortex datasets + DerSimonian-Laird random-effects pooling.
-# Design: ../DESIGN_ADDENDUM_AD_reference.md ; deviations: ../DEVIATIONS.md (items 10-11).
 # Run from project root:
 #   R_LIBS=_workspace/r_libs_affy:_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_disease_specificity_redesign_20261003/code/04_ad_reference_meta.R
 source("03_candidate_analysis/AxisA_singscore_official_rerun_20261004/code/00_functions.R")
@@ -9,7 +8,7 @@ OUT <- "03_candidate_analysis/AxisA_singscore_official_rerun_20261004"
 RAW <- "02_data/raw/disease_specificity_tissue_20261003"
 inputs <- c(
   gse84422 = "02_data/raw/bulk_brain_ad/GSE84422-GPL96_series_matrix.txt.gz",
-  ph84422 = "WGCNA_全部图件/复现资料/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv",
+  ph84422 = "WGCNA_figures/reproduction_materials/analysis/02_brain_wgcna/results/AD_GSE33000_current_to_GSE84422_DLPFC_module_preservation_1000/gse84422_dlpfc_validation_metadata_and_qc.csv",
   gse118553 = "02_data/raw/bulk_brain_ad/GSE118553_series_matrix.txt.gz",
   gse313307_counts = file.path(RAW, "GSE313307_raw_count.csv.gz"), gse313307 = file.path(RAW, "GSE313307_series_matrix.txt.gz"),
   gse140841 = file.path(RAW, "GSE140841_series_matrix.txt.gz"), gse140841_tar = file.path(RAW, "GSE140841_RAW.tar"),
@@ -32,7 +31,7 @@ m <- collapse_array(m[, ph$sample_id], inputs[["gpl96"]])
 run(1, "GSE84422", "AD_reference", "AD_dataset", "GSE84422 DLPFC", "DLPFC", "AD vs normal", m,
     data.table(sample = ph$sample_id, disease = as.integer(ph$neuropathological_category != "Normal"), age = as.numeric(ph$age), sex = as.character(ph$sex_male)), c("age", "sex"))
 
-# 2 GSE118553 frontal cortex (as in DEVIATIONS item 10)
+# 2 GSE118553 frontal cortex
 md <- series_chars(inputs[["gse118553"]]); md <- md[tissue == "Frontal_Cortex" & disease.state %in% c("AD", "control")]
 m <- collapse_array(read_matrix(inputs[["gse118553"]])[, md$gsm], inputs[["gpl10558"]])
 ids <- unique(md$individual); mm <- sapply(ids, function(id) rowMeans(m[, md$individual == id, drop = FALSE])); rownames(mm) <- rownames(m)

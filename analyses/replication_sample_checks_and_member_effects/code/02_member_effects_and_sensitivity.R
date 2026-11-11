@@ -1,5 +1,5 @@
 # Member-level disease effects, leave-one-member-out, replication sensitivity analyses and member coverage audit.
-# Design: ../DESIGN.md. Filtering, scoring and the score model are copied from fit_comparison() in
+# Filtering, scoring and the score model are copied from fit_comparison() in
 # AxisA_singscore_official_rerun_20261004/code/00_functions.R; check A below reproduces the adopted effects.
 # Run from project root:
 #   R_LIBS=_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/AxisA_member_direction_robustness_20261018/code/02_member_effects_and_sensitivity.R

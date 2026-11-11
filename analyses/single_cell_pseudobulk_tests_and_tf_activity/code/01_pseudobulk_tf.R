@@ -1,9 +1,9 @@
-# Advice 2.4 / 2.5 / section 4 on saved donor pseudobulk counts (DESIGN.md).
+# Advice 2.4 / 2.5 / section 4 on saved donor pseudobulk counts.
 # Run from project root:
 #   LC_ALL=en_US.UTF-8 R_LIBS=_workspace/r_libs_decoupler_20261019:_workspace/r_libs _workspace/envs/r/bin/Rscript 03_candidate_analysis/SingleCell_pseudobulk_supplements_20261019/code/01_pseudobulk_tf.R
 suppressPackageStartupMessages({ library(data.table); library(edgeR); library(limma); library(Matrix); library(decoupleR); library(AnnotationDbi); library(org.Hs.eg.db) })
 O <- "03_candidate_analysis/SingleCell_pseudobulk_supplements_20261019"; PB <- "03_candidate_analysis/AxisA_pseudobulk_disease_20261014"
-SYN <- "细胞定位/SYN01_Entrez_downstream_20261001/results"; T6 <- "01_current_analysis/01_storyline_current/07_virtual_ko_celloracle/results/T06E_SEAAD_independent_state_evaluation_20260827_candidate/inputs"
+SYN <- "cell_localization/SYN01_Entrez_downstream_20261001/results"; T6 <- "01_current_analysis/01_storyline_current/07_virtual_ko_celloracle/results/T06E_SEAAD_independent_state_evaluation_20260827_candidate/inputs"
 z <- function(x) (x - mean(x)) / sd(x)
 net <- fread(file.path(O, "source_data/collectri_human_20261019.tsv"))
 TOP10 <- c("STAT3", "FOS", "LYL1", "JUNB", "CEBPB", "ELF1", "RREB1", "KLF6", "KLF7", "MEF2A")
@@ -22,7 +22,7 @@ lung_axis <- readLines(file.path(SYN, "lung_axis_measured.txt"))
 map <- fread(file.path(PB, "source_data/brain_symbol_to_ensembl.tsv")); brain_axis <- readLines(file.path(SYN, "brain_axis_measured.txt"))
 adnc <- fread(file.path(O, "source_data/seaad_donor_ADNC.tsv"))
 bm <- fread(file.path(SYN, "disease/brain_CPS_donor_data.tsv"))[Supertype == "Micro-PVM_2"]; setorder(bm, `Donor ID`)
-bc <- fread("虚拟敲除/AxisA_疾病标尺核对_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz"); stopifnot(identical(bc$gene, map$gene))
+bc <- fread("virtual_knockout/AxisA_disease_scale_check_20260925/source_data/brain_donor_pseudobulk_counts.tsv.gz"); stopifnot(identical(bc$gene, map$gene))
 B2 <- as.matrix(bc[, -1]); rownames(B2) <- map$gene_id; B2 <- B2[, bm$`Donor ID`]
 mg <- t(as.matrix(readMM(file.path(T6, "SEAAD_DFC_microglia_pseudobulk_counts.mtx.gz")))); gg <- readLines(file.path(T6, "SEAAD_DFC_microglia_pseudobulk_genes.txt")); dd <- readLines(file.path(T6, "SEAAD_DFC_microglia_pseudobulk_donors.txt"))
 if (nrow(mg) != length(gg)) mg <- t(mg); stopifnot(nrow(mg) == length(gg), ncol(mg) == length(dd), identical(gg, map$gene))

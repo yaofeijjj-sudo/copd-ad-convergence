@@ -9,7 +9,7 @@
 suppressPackageStartupMessages({ library(data.table); library(edgeR); library(limma); library(decoupleR); library(AnnotationDbi); library(org.Hs.eg.db) })
 BR <- '03_candidate_analysis/Lung_sc_donor_merge_20261029/results'
 AMB <- '03_candidate_analysis/AxisA_AM_pseudobulk_20261028'; SPB <- '03_candidate_analysis/SingleCell_pseudobulk_supplements_20261019'
-SYN <- '细胞定位/SYN01_Entrez_downstream_20261001/results'
+SYN <- 'cell_localization/SYN01_Entrez_downstream_20261001/results'
 z <- function(x) (x - mean(x)) / sd(x)
 remap <- function(x) fifelse(x == 'cood8', 'copd8', x)
 AM_FAMILY <- c('Alveolar macrophages', 'Alveolar Mph CCL3+', 'Alveolar Mph proliferating', 'Alveolar Mph MT-positive')
