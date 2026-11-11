@@ -1,0 +1,18 @@
+{
+  "lung_network_features": 8873,
+  "brain_network_features": 8807,
+  "lung_samples": 147,
+  "brain_samples": 459,
+  "lung_non_grey_modules": 8,
+  "brain_non_grey_modules": 16,
+  "axes": {
+    "AxisA": [
+      "red",
+      "blue"
+    ],
+    "AxisB": [
+      "turquoise",
+      "turquoise"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+source("R/runtime.R")
+WORKSPACE_ROOT <- normalizePath(".")
+PROJECT_ROOT <- WORKSPACE_ROOT
+STORY_ROOT <- file.path(WORKSPACE_ROOT, "results/wgcna")
+RAW_DIR <- file.path(WORKSPACE_ROOT, "data/raw")
+RAW_GSE76925 <- file.path(RAW_DIR, "bulk_lung_copd/GSE76925_series_matrix.txt.gz")
+RAW_GSE47460 <- file.path(RAW_DIR, "bulk_lung_copd/GSE47460-GPL14550_series_matrix.txt.gz")
+RAW_GSE33000 <- file.path(RAW_DIR, "bulk_brain_ad/GSE33000_series_matrix.txt.gz")
+RAW_GSE84422 <- file.path(RAW_DIR, "bulk_brain_ad/GSE84422-GPL96_series_matrix.txt.gz")
+LUNG_RESULTS <- file.path(STORY_ROOT, "lung")
+BRAIN_RESULTS <- file.path(STORY_ROOT, "brain")
+COPD_WGCNA <- file.path(LUNG_RESULTS, "COPD_WGCNA")
+AD_WGCNA <- file.path(BRAIN_RESULTS, "AD_WGCNA_unadjusted")
+RESULTS <- BRAIN_RESULTS
+CROSS_RESULTS <- file.path(WORKSPACE_ROOT, "results/module_overlap/results/cross")
+CODE_DIR <- file.path(WORKSPACE_ROOT, "scripts/01_wgcna")
+DOCS_DIR <- file.path(WORKSPACE_ROOT, "results/wgcna/docs")

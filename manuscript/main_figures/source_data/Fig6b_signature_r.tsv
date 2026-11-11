@@ -1,0 +1,11 @@
+signature	set	r
+BRETIGEA_microglia_top250	COPD lung (GSE47460)	0.881750760358491
+Patir2019_core_microglia	COPD lung (GSE47460)	0.972303895261158
+Travaglini2020_lung_macrophage	COPD lung (GSE47460)	0.607508489980147
+GO0006956_complement_activation	COPD lung (GSE47460)	0.665418045472253
+GO0006909_phagocytosis	COPD lung (GSE47460)	0.828540398730082
+BRETIGEA_microglia_top250	AD pooled (6 cohorts)	0.941794568681944
+Patir2019_core_microglia	AD pooled (6 cohorts)	0.971857112802475
+Travaglini2020_lung_macrophage	AD pooled (6 cohorts)	0.869858290218717
+GO0006956_complement_activation	AD pooled (6 cohorts)	0.820899318498799
+GO0006909_phagocytosis	AD pooled (6 cohorts)	0.930466461498563

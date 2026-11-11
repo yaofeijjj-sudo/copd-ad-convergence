@@ -1,0 +1,219 @@
+{
+  "wgcna": [
+    [
+      "scripts/01_wgcna/01_build_networks.R"
+    ]
+  ],
+  "module_overlap": [
+    [
+      "scripts/02_module_overlap/01_map_identity_and_overlap.R"
+    ]
+  ],
+  "enrichment": [
+    [
+      "scripts/00_download/03_hallmark.R"
+    ],
+    [
+      "scripts/03_enrichment/02_overrepresentation.R"
+    ]
+  ],
+  "blood": [
+    [
+      "scripts/04_genetics_blood/01_fit_gse248493.R"
+    ],
+    [
+      "scripts/04_genetics_blood/02_fit_gse248417.R"
+    ],
+    [
+      "scripts/04_genetics_blood/03_fit_emtab5278.R"
+    ],
+    [
+      "scripts/04_genetics_blood/04_fit_microarrays.R"
+    ],
+    [
+      "scripts/04_genetics_blood/05_blood_fgsea.R"
+    ]
+  ],
+  "magma": [
+    [
+      "scripts/04_genetics_blood/06_magma.py"
+    ],
+    [
+      "scripts/04_genetics_blood/07_summarize_magma.R"
+    ],
+    [
+      "scripts/04_genetics_blood/08_magma_coverage.py"
+    ]
+  ],
+  "single_cell": [
+    [
+      "scripts/05_single_cell/01_map_features.R"
+    ],
+    [
+      "scripts/05_single_cell/02_lung_ucell.R"
+    ],
+    [
+      "scripts/05_single_cell/03_brain_broad_ucell.R",
+      "broad"
+    ],
+    [
+      "scripts/05_single_cell/04_brain_subtype_ucell.R",
+      "subtype"
+    ],
+    [
+      "scripts/05_single_cell/05_localization_and_null.R"
+    ],
+    [
+      "scripts/05_single_cell/06_lung_myeloid.R"
+    ],
+    [
+      "scripts/05_single_cell/07_disease_association.py"
+    ]
+  ],
+  "localization_models": [
+    [
+      "scripts/05_single_cell/05_localization_and_null.R"
+    ],
+    [
+      "scripts/05_single_cell/06_lung_myeloid.R"
+    ]
+  ],
+  "celloracle": [
+    [
+      "scripts/06_virtual_knockout/rebuild.py",
+      "lung"
+    ],
+    [
+      "scripts/06_virtual_knockout/simulate.py",
+      "lung"
+    ],
+    [
+      "scripts/06_virtual_knockout/rebuild.py",
+      "brain"
+    ],
+    [
+      "scripts/06_virtual_knockout/simulate.py",
+      "brain"
+    ],
+    [
+      "scripts/06_virtual_knockout/summarize.py"
+    ]
+  ],
+  "preservation": [
+    [
+      "scripts/01_wgcna/04_lung_preservation.R"
+    ],
+    [
+      "scripts/01_wgcna/05_brain_preservation.R"
+    ]
+  ],
+  "module_models": [
+    [
+      "scripts/01_wgcna/02_module_traits.R"
+    ],
+    [
+      "scripts/01_wgcna/03_lung_adjusted_models.R"
+    ]
+  ],
+  "validate": [
+    [
+      "validation/compare_outputs.R"
+    ]
+  ],
+  "lung_preprocess": [
+    [
+      "scripts/05_single_cell/preprocess/00_lung_metadata.R"
+    ],
+    [
+      "scripts/05_single_cell/preprocess/01_lung_qc.R"
+    ],
+    [
+      "scripts/05_single_cell/preprocess/02_export_qc.R"
+    ],
+    [
+      "scripts/05_single_cell/preprocess/03_annotate_lung.py"
+    ],
+    [
+      "scripts/05_single_cell/preprocess/04_lung_metadata.R"
+    ]
+  ],
+  "celloracle_summary": [
+    [
+      "scripts/06_virtual_knockout/summarize.py"
+    ],
+    [
+      "scripts/06_virtual_knockout/03_figure_sources.py"
+    ],
+    [
+      "scripts/06_virtual_knockout/04_gene_figure_sources.py"
+    ]
+  ],
+  "brain_preprocess": [
+    [
+      "scripts/05_single_cell/preprocess/05_brain_metadata.py"
+    ]
+  ],
+  "celloracle_input": [
+    [
+      "scripts/06_virtual_knockout/04_lung_umi.py"
+    ],
+    [
+      "scripts/06_virtual_knockout/05_brain_umi.py"
+    ]
+  ],
+  "blood_input": [
+    [
+      "scripts/00_download/04_blood_metadata.py"
+    ],
+    [
+      "scripts/00_download/05_emtab_metadata.py"
+    ],
+    [
+      "scripts/00_download/06_merge_blood_counts.py"
+    ]
+  ],
+  "source_tables": [
+    [
+      "scripts/02_module_overlap/02_figure_sources.py"
+    ],
+    [
+      "scripts/02_module_overlap/03_adjusted_effects.R"
+    ],
+    [
+      "scripts/03_enrichment/03_figure_sources.py"
+    ],
+    [
+      "scripts/04_genetics_blood/09_blood_figure_sources.py"
+    ],
+    [
+      "scripts/05_single_cell/09_figure_sources.R"
+    ]
+  ],
+  "lung_null": [
+    [
+      "scripts/05_single_cell/05_localization_and_null.R",
+      "lung-only"
+    ]
+  ],
+  "brain_disease": [
+    [
+      "scripts/05_single_cell/07_disease_association.py"
+    ]
+  ],
+  "gwas_input": [
+    [
+      "scripts/00_download/08_prepare_gwas.py"
+    ]
+  ],
+  "tissue_scope": [
+    [
+      "scripts/04_genetics_blood/10_tissue_metadata.R"
+    ],
+    [
+      "scripts/04_genetics_blood/11_disease_scope.R"
+    ],
+    [
+      "scripts/04_genetics_blood/12_ad_meta_analysis.R"
+    ]
+  ]
+}

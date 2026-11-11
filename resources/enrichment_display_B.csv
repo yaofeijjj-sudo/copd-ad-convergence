@@ -1,0 +1,6 @@
+axis,database,term_id,term_name,display_order,fdr_scope
+Axis B,GO BP,GO:0022904,respiratory electron transport chain,9,BH within prespecified axis x database x primary-background family; all eligible terms included and zero-hit terms assigned P=1
+Axis B,GO BP,GO:0042773,ATP synthesis coupled electron transport,10,BH within prespecified axis x database x primary-background family; all eligible terms included and zero-hit terms assigned P=1
+Axis B,GO BP,GO:0006119,oxidative phosphorylation,11,BH within prespecified axis x database x primary-background family; all eligible terms included and zero-hit terms assigned P=1
+Axis B,KEGG,HSA00190,Oxidative phosphorylation,12,BH within prespecified axis x database x primary-background family; all eligible terms included and zero-hit terms assigned P=1
+Axis B,Hallmark,HALLMARK_OXIDATIVE_PHOSPHORYLATION,Oxidative phosphorylation,13,BH within prespecified axis x database x primary-background family; all eligible terms included and zero-hit terms assigned P=1

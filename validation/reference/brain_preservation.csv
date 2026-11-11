@@ -1,0 +1,17 @@
+module,axis_role,full_module_size,evaluated_module_size,Zsummary,medianRank,preservation_level
+purple,all-module result,212,212,25.2698745602852,1,strong
+green,all-module result,412,412,17.8715197726616,4,strong
+magenta,all-module result,249,249,16.7237240123124,3,strong
+brown,all-module result,654,654,15.8373453576891,7,strong
+turquoise,Axis B source module (AD turquoise),2973,1000,15.5239232690807,9,strong
+blue,Axis A source module (AD blue),1656,1000,9.87396033904055,11,moderate
+yellow,all-module result,482,482,9.54764171705285,10,moderate
+red,all-module result,393,393,8.66034990983682,9,moderate
+midnightblue,all-module result,46,46,6.83603799122943,4,moderate
+lightcyan,all-module result,34,34,5.58374489924536,2,moderate
+pink,all-module result,298,298,5.20408518784036,11,moderate
+cyan,all-module result,48,48,4.13764259139832,7,moderate
+black,all-module result,325,325,3.78831073947463,13,moderate
+greenyellow,all-module result,158,158,1.69104791462329,15,weak_or_none
+tan,all-module result,102,102,0.96439206444311,15,weak_or_none
+salmon,all-module result,68,68,0.489399252116756,17,weak_or_none

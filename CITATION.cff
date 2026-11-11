@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article below."
+title: "Co-expression network analysis of chronic obstructive pulmonary disease lung and Alzheimer's disease brain reveals a shared myeloid gene program enriched for Alzheimer's disease genetic risk: analysis code"
+authors:
+  - family-names: "Yao"
+    given-names: "Feijie"
+    affiliation: "Department of Molecular Pharmacology, National Institute of Neuroscience, National Center of Neurology and Psychiatry, Tokyo, Japan"
+license: MIT
+date-released: 2026-11-12
+preferred-citation:
+  type: article
+  title: "Co-expression network analysis of chronic obstructive pulmonary disease lung and Alzheimer's disease brain reveals a shared myeloid gene program enriched for Alzheimer's disease genetic risk"
+  authors:
+    - family-names: "Yao"
+      given-names: "Feijie"
+  year: 2026

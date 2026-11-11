@@ -1,0 +1,9 @@
+module,full_module_size,evaluated_module_size,Zsummary,medianRank,preservation_level
+green,529,529,111.560902537128,1,strong
+black,354,354,55.0803834376859,2,strong
+red,488,488,37.4402642197948,3,strong
+turquoise,1703,1703,29.9229296873422,4,strong
+blue,1622,1622,18.5019058442238,5,strong
+yellow,806,806,15.2057257603656,6,strong
+brown,1352,1352,7.36764224711129,9,moderate
+pink,241,241,0.905691332712983,10,weak_or_none

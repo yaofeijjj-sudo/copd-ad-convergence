@@ -1,0 +1,20 @@
+name: copd-ad-celloracle
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9.6
+  - pip
+  - pip:
+      - celloracle==0.20.0
+      - scanpy==1.9.8
+      - anndata==0.10.8
+      - numpy==1.26.4
+      - pandas==1.5.3
+      - scipy==1.13.1
+      - scikit-learn==1.6.1
+      - umap-learn==0.5.12
+      - h5py==3.14.0
+      - pyarrow==21.0.0
+      - openpyxl==3.1.5
+      - statsmodels==0.14.6
+      - threadpoolctl==3.6.0

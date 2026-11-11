@@ -1,0 +1,5 @@
+organ	cohort	module	Zsummary	axis	lab	x	level
+Lung	GSE47460	red	37.4402642197948	Axis A	Lung red	1	Strong (> 10)
+Lung	GSE47460	turquoise	29.9229296873422	Axis B	Lung turquoise	3	Strong (> 10)
+Brain	GSE84422	turquoise	15.5239232690807	Axis B	Brain turquoise	4	Strong (> 10)
+Brain	GSE84422	blue	9.87396033904055	Axis A	Brain blue	2	Moderate (2–10)

@@ -1,0 +1,241 @@
+[
+  {
+    "reference": "wgcna_lung_assignment.csv",
+    "output": "wgcna/lung/COPD_WGCNA/module_assignment.csv",
+    "keys": [
+      "gene_id"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "wgcna_brain_assignment.csv",
+    "output": "wgcna/brain/AD_WGCNA_unadjusted/module_assignment.csv",
+    "keys": [
+      "gene_id"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "lung_module_traits.csv",
+    "output": "wgcna/lung/COPD_WGCNA/copd_module_trait_tidy.csv",
+    "keys": [
+      "module",
+      "trait"
+    ],
+    "columns": [
+      "correlation",
+      "p_value",
+      "fdr",
+      "n_pairwise"
+    ]
+  },
+  {
+    "reference": "brain_module_traits.csv",
+    "output": "wgcna/brain/AD_WGCNA_unadjusted/ad_module_trait_tidy.csv",
+    "keys": [
+      "module",
+      "trait"
+    ],
+    "columns": [
+      "correlation",
+      "p_value",
+      "fdr"
+    ]
+  },
+  {
+    "reference": "module_overlap.csv",
+    "output": "module_overlap/results/cross/all128_module_pairs_fisher_BH.csv",
+    "keys": [
+      "lung_module",
+      "brain_module"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "adjusted_effects.csv",
+    "output": "module_overlap_figures/source_data/adjusted_effects.csv",
+    "keys": [
+      "axis",
+      "organ",
+      "module"
+    ],
+    "columns": [
+      "effect",
+      "se",
+      "lower",
+      "upper",
+      "fdr"
+    ]
+  },
+  {
+    "reference": "enrichment.csv",
+    "output": "enrichment/results/complete_family_all_terms.csv",
+    "keys": [
+      "source",
+      "term_id",
+      "background_role",
+      "gene_set"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "blood.csv",
+    "output": "genetics_blood/results/fgsea_six_results.csv",
+    "keys": [
+      "dataset_id"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "magma.csv",
+    "output": "genetics_blood/results/magma_four_tests.csv",
+    "keys": [
+      "disease",
+      "axis"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "disease_scope.tsv",
+    "output": "tissue_scope/disease_scope.tsv",
+    "keys": [
+      "id"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "ad_meta_analysis.tsv",
+    "output": "tissue_scope/ad_meta_analysis.tsv",
+    "keys": [
+      "id"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "ad_leave_one_out.tsv",
+    "output": "tissue_scope/ad_leave_one_out.tsv",
+    "keys": [
+      "left_out"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "lung_preservation.csv",
+    "output": "wgcna/lung/COPD_GSE76925_to_GSE47460_GPL14550_module_preservation_1000_full/module_preservation_no_grey_gold.csv",
+    "keys": [
+      "module"
+    ],
+    "columns": [
+      "full_module_size",
+      "evaluated_module_size",
+      "Zsummary",
+      "medianRank"
+    ]
+  },
+  {
+    "reference": "brain_preservation.csv",
+    "output": "wgcna/brain/AD_GSE33000_to_GSE84422_DLPFC_module_preservation_1000/module_preservation_no_grey_gold.csv",
+    "keys": [
+      "module"
+    ],
+    "columns": [
+      "full_module_size",
+      "evaluated_module_size",
+      "Zsummary",
+      "medianRank"
+    ]
+  },
+  {
+    "reference": "localization.tsv",
+    "output": "single_cell/results/models/tables/harmonized_primary_localization.tsv",
+    "keys": [
+      "cohort",
+      "contrast"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "lung_null.tsv",
+    "output": "single_cell/results/models/tables/lung_matched_null_draws.tsv",
+    "keys": [
+      "cohort",
+      "random_signature"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "brain_null.tsv",
+    "output": "single_cell/results/models/tables/brain_matched_null_draws.tsv",
+    "keys": [
+      "cohort",
+      "random_signature"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "lung_subtype.tsv",
+    "output": "single_cell/results/models/tables/lung_myeloid_CR2.tsv",
+    "keys": [
+      "cohort",
+      "contrast"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "brain_subtype.tsv",
+    "output": "single_cell/results/models/tables/brain_subtype_CR2.tsv",
+    "keys": [
+      "cohort",
+      "contrast"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "brain_disease.tsv",
+    "output": "single_cell/results/disease/brain_CPS_local_association.tsv",
+    "keys": [
+      "Supertype"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "lung_disease.tsv",
+    "output": "single_cell/results/lung/tables/axisA_donor_COPD_vs_control.tsv",
+    "keys": [
+      "broad_celltype"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "celloracle_breadth.tsv",
+    "output": "virtual_knockout/source_data/all_common_TF_breadth_strength.tsv",
+    "keys": [
+      "TF"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "STAT3_gene_response.tsv",
+    "output": "gene_response_figures/source_data/STAT3_rank_rank_measured.tsv",
+    "keys": [
+      "gene"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "CEBPB_gene_response.tsv",
+    "output": "gene_response_figures/source_data/CEBPB_rank_rank_measured.tsv",
+    "keys": [
+      "gene"
+    ],
+    "columns": null
+  },
+  {
+    "reference": "LYL1_gene_response.tsv",
+    "output": "gene_response_figures/source_data/LYL1_rank_rank_measured.tsv",
+    "keys": [
+      "gene"
+    ],
+    "columns": null
+  }
+]

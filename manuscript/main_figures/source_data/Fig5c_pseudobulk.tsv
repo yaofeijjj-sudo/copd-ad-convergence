@@ -1,0 +1,15 @@
+y	grp	lab	method	p	dir	yo
+10	Lung, COPD vs control	Myeloid cells	fry	0.100623572307802	Down	10.17
+6	Brain Microglia 2	CPS	fry	0.315969415141656	Up	6.17
+5	Brain Microglia 2	ADNC	fry	0.310125842170126	Up	5.17
+4	Brain Microglia 2	CPS, >= 50 nuclei	fry	0.32119952827413	Up	4.17
+2	Brain, all microglia	CPS	fry	0.205550465185894	Up	2.17
+1	Brain, all microglia	ADNC	fry	0.273017742017248	Up	1.17
+9	Lung, COPD vs control	Alveolar macrophages	fry	0.182025626121422	Down	9.17
+10	Lung, COPD vs control	Myeloid cells	CAMERA	0.0522367588612014	Down	9.83
+6	Brain Microglia 2	CPS	CAMERA	0.369610120451069	Up	5.83
+5	Brain Microglia 2	ADNC	CAMERA	0.413436382756677	Up	4.83
+4	Brain Microglia 2	CPS, >= 50 nuclei	CAMERA	0.36467649742074	Up	3.83
+2	Brain, all microglia	CPS	CAMERA	0.306861017168295	Up	1.83
+1	Brain, all microglia	ADNC	CAMERA	0.347581860188453	Up	0.83
+9	Lung, COPD vs control	Alveolar macrophages	CAMERA	0.137885987807217	Down	8.83

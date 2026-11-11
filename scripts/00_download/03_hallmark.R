@@ -1,0 +1,18 @@
+source("R/runtime.R")
+.libPaths(c("env/library", .libPaths()))
+suppressPackageStartupMessages({
+  library(data.table)
+  library(msigdbr)
+})
+out <- "results/enrichment"
+cache <- fread("data/reference/enrichment/full_convergence_enrichment/annotation_cache/msigdb_hallmark_human_term2gene_cached.csv")
+h <- as.data.table(msigdbr(species = "Homo sapiens", collection = "H"))
+stopifnot(as.character(packageVersion("msigdbr")) == "26.1.0", all(h$db_version == "2026.1.Hs"), unique(cache$collection) == "MSigDB_Hallmark_2026.1.Hs")
+h <- unique(h[, .(term_id = gs_name, symbol = gene_symbol, gene = as.character(ncbi_gene))])
+cmp <- merge(unique(cache[, .(term_id, symbol = gene)]), h[, .(term_id, symbol, in_msigdb = TRUE)], by = c("term_id", "symbol"), all = TRUE)
+stopifnot(!anyNA(h$gene), setequal(unique(cache$term_id), unique(h$term_id)), nrow(cmp[is.na(in_msigdb)]) == 0)
+lab <- unique(cache[, .(term_id, term_name, collection, db_source)])
+stopifnot(!anyDuplicated(lab$term_id))
+res <- unique(merge(h[, .(term_id, gene)], lab, by = "term_id")[, .(term_id, term_name, collection, db_source, gene)])
+fwrite(res, file.path(out, "provenance/MSigDB_Hallmark_2026.1.Hs_entrez.csv"))
+cat("terms", uniqueN(res$term_id), "pairs", nrow(res), "cache symbol pairs", nrow(unique(cache[, .(term_id, gene)])), "\n")
