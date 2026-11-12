@@ -85,7 +85,7 @@ r = [x for x in r if (x[0], x[1]) in (('red', 'blue'), ('turquoise', 'turquoise'
 add('Fig2d', 'Fig 2d', 'Shared-gene counts of the two pairs defining Axis A (red-blue, 137) and Axis B (turquoise-turquoise, 434)', SRC / 'Fig2c_module_overlap.tsv', h, r)
 add('Fig2e', 'Fig 2e', 'Covariate-adjusted standardized case-control effects of the four source modules', REF / 'adjusted_effects.csv')
 add('Fig3a', 'Fig 3a', 'Module preservation Zsummary in GSE47460 and GSE84422', SRC / 'Fig3a_preservation.tsv')
-add('Fig3b', 'Fig 3b', 'sigQC median pairwise correlation of Axis A members and expression-matched random gene sets (Table C a)', SRC / 'Fig3b_sigqc.tsv')
+add('Fig3b', 'Fig 3b', 'sigQC median pairwise correlation of Axis A members and expression-matched random gene sets (Table C in S2 File)', SRC / 'Fig3b_sigqc.tsv')
 add('Fig3c', 'Fig 3c', 'Axis A disease effects (SD, 95% CI) by dataset and random-effects pooling', SRC / 'Fig3c_forest.tsv')
 add('Fig3d', 'Fig 3d', 'Per-member standardized disease effects in GSE47460 and the pooled AD datasets', SRC / 'Fig3d_member_effects.tsv')
 for organ, f in (('lung', SC / 'Lung_UMAP_cells.tsv.gz'), ('brain', SC / 'Brain_UMAP_cells.tsv.gz')):
@@ -119,6 +119,8 @@ add('Fig8c', 'Fig 8c', 'Shared-decrease, shared-increase and opposite-direction 
 # 11-09: Fig 8d, e show STAT3 and CEBPB only (the LYL1 panel was dropped); former Fig 8g is now Fig 8f
 h, r = read(CO / 'Fig6def_source_signed_logratio.tsv')
 r = [x for x in r if x[h.index('TF')] in ('STAT3', 'CEBPB')]; assert len(r) == 272
+keep = [i for i, c in enumerate(h) if 'pct' not in c]  # 11-12: drop the old percentage columns; Fig 8d, e plot delta_X only
+h, r = [h[i] for i in keep], [[x[i] for i in keep] for x in r]
 add('Fig8de', 'Fig 8d, e', 'Predicted delta_X (natural-log scale) of 136 Axis A genes after STAT3 and CEBPB knockout', CO / 'Fig6def_source_signed_logratio.tsv', h, r)
 add('Fig8f', 'Fig 8f', 'TF activity correlation with the donor Axis A score and disease-association t', SRC / 'Fig8f_TF_activity.tsv')
 # Fig A-B in S1 File: the files read by build_S1_S2_Fig.R
@@ -141,7 +143,7 @@ ws.append(['S1 Data. Values underlying Figs 2-8 and Fig A-B in S1 File. Fig 1 is
 # authors in code/supplement/parts/S1_Data_source_map.tsv.
 ws.append(['Each sheet holds the values plotted in the named panel. The analyses that produced them are described in the Supplementary Methods in S1 File, the input datasets are listed in Table 1 of the main text and Table D in S2 File, and the analysis code is available at https://github.com/yaofeijjj-sudo/copd-ad-convergence. Fig 4a-d per-cell values are summarized by cell group.'])
 ws.append([])
-ws.append(['Sheet', 'Panel', 'Content', 'Rows'])
+ws.append(['Sheet', 'Panel', 'Content', 'Number of Rows'])
 for c in ws[4]: c.font = Font(bold=True)
 with open(ROOT / '06_resubmission_20261008/code/supplement/parts/S1_Data_source_map.tsv', 'w', encoding='utf-8') as fh:
     fh.write('sheet\tpanel\tsource_file_project_relative\n')

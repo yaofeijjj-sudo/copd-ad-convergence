@@ -51,11 +51,11 @@ Scripts in `analyses/` and `manuscript/` are run from the project root ([paths](
 
 ## Environment
 
-R 4.5.3 ([`env/renv.lock`](env/renv.lock)) and Python 3.9.6 ([`env/`](env/)). Key versions: WGCNA 1.74, limma 3.66.0, edgeR 4.8.2, fgsea 1.36.2, singscore 1.30.0, metafor 5.0.1, UCell 2.14.0, sigQC 0.1.24, decoupleR 2.16.0, CellOracle 0.20.0, MAGMA v1.10 (<https://cncr.nl/research/magma/>). CIBERSORTx was run through its web tool (<https://cibersortx.stanford.edu/>).
+R 4.5.3 ([`env/renv.lock`](env/renv.lock)) and Python 3.9.6 ([`env/`](env/)). Key versions: WGCNA 1.74, limma 3.66.0, edgeR 4.8.2, singscore 1.30.0, metafor 5.0.1, UCell 2.14.0, sigQC 0.1.24, decoupleR 2.16.0, CellOracle 0.20.0, MAGMA v1.10 (<https://cncr.nl/research/magma/>). CIBERSORTx was run through its web tool (<https://cibersortx.stanford.edu/>).
 
 ## Seeds
 
-WGCNA 20260624; preservation 20260819 (lung), 20260712 (brain); age-outlier sensitivity 20260724; single-cell random gene sets 20260901 (lung), 20260831 (brain); blood fgsea 20260929; sigQC 20261014; matched random gene sets 20261019; CellOracle 123; UMAP 0.
+WGCNA 20260624; preservation 20260819 (lung), 20260712 (brain); single-cell random gene sets 20260901 (lung), 20260831 (brain); sigQC 20261014; matched random gene sets 20261019; CellOracle 123; UMAP 0.
 
 ## Citation and license
 
