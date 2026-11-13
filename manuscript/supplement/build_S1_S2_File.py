@@ -1,7 +1,8 @@
 """Combine the supporting-information parts into the files uploaded to PLOS ONE.
 
 S1 File (PDF): Supplementary Methods (parts/S1_Methods.pdf, from build_S1_File_methods.py; added 10-29), then Fig A
-(earlier WGCNA soft-threshold PDFs, stacked here into parts/S1_Fig.pdf) and Fig B (parts/S2_Fig.pdf).
+(earlier WGCNA soft-threshold PDFs, stacked here into parts/S1_Fig.pdf) and Fig B (parts/S2_Fig.pdf), each on a
+Letter page with its legend from parts/S1_File_fig_legends_en.md below it (added 11-13).
 S2 File (xlsx): Table A-M (parts/S1_Table.xlsx ... S13_Table.xlsx), one sheet per table part.
 S1 Data is built separately by build_S1_Data.py.
 
@@ -14,6 +15,7 @@ Run from the project root:
   _workspace/envs/celltypist/bin/python -I 06_resubmission_20261008/code/supplement/build_S1_S2_File.py
 """
 import copy
+import json
 import re
 import subprocess
 from pathlib import Path
@@ -78,6 +80,9 @@ wb.save(OUT / "S2_File.xlsx")
 SOFT = [(R / "WGCNA_figures/01_COPD_soft_threshold_connectivity.pdf", "a", "COPD lung network (GSE76925)"),
         (R / "WGCNA_figures/02_AD_soft_threshold_connectivity.pdf", "b", "AD DLPFC network (GSE33000)")]
 panels = ",".join(f'("{p}", "{t}", "{n}")' for p, t, n in SOFT)
+# Fig A/B legends live in parts/S1_File_fig_legends_en.md (moved out of the manuscript's Supporting information list, 11-13)
+_leg = [b.split("\n", 1) for b in (PARTS / "S1_File_fig_legends_en.md").read_text().strip().split("\n\n")]
+legends = ",".join("(" + json.dumps(a.strip(), ensure_ascii=False) + ", " + json.dumps(" ".join(b.split()), ensure_ascii=False) + ")" for a, b in _leg)
 swift = f"""
 import PDFKit
 import CoreText
@@ -102,8 +107,44 @@ for (i, pg) in pages.enumerated() {{
     ctx.saveGState(); ctx.translateBy(x: 0, y: top); ctx.drawPDFPage(pg); ctx.restoreGState()
 }}
 ctx.endPDFPage(); ctx.closePDF()
+// 11-13: each figure on a US Letter page (1-inch margins, as the Supplementary Methods), legend below in Times New Roman
+let legends: [(String, String)] = [{legends}]
+let figPDF = "{PARTS}/S1_S2_Fig_with_legends.pdf"
+var letter = CGRect(x: 0, y: 0, width: 612, height: 792)
+let lctx = CGContext(URL(fileURLWithPath: figPDF) as CFURL, mediaBox: &letter, nil)!
+func attributed(_ title: String, _ body: String) -> NSAttributedString {{
+    let s = NSMutableAttributedString()
+    let reg = CTFontCreateWithName("TimesNewRomanPSMT" as CFString, 12, nil)
+    let bold = CTFontCreateWithName("TimesNewRomanPS-BoldMT" as CFString, 12, nil)
+    let small = CTFontCreateWithName("TimesNewRomanPSMT" as CFString, 8, nil)
+    s.append(NSAttributedString(string: title + " ", attributes: [.init(kCTFontAttributeName as String): bold]))
+    let parts = body.components(separatedBy: "_{{")
+    for (i, part) in parts.enumerated() {{
+        if i == 0 {{ s.append(NSAttributedString(string: part, attributes: [.init(kCTFontAttributeName as String): reg])); continue }}
+        let sp = part.components(separatedBy: "}}")
+        s.append(NSAttributedString(string: sp[0], attributes: [.init(kCTFontAttributeName as String): small, .init(kCTBaselineOffsetAttributeName as String): -3]))
+        s.append(NSAttributedString(string: sp.dropFirst().joined(separator: "}}"), attributes: [.init(kCTFontAttributeName as String): reg]))
+    }}
+    return s
+}}
+for (i, path) in [tmp.path, "{PARTS}/S2_Fig.pdf"].enumerated() {{
+    let pg = CGPDFDocument(URL(fileURLWithPath: path) as CFURL)!.page(at: 1)!
+    let r = pg.getBoxRect(.mediaBox)
+    let sc = min(468 / r.width, 480 / r.height)
+    let fw = r.width * sc, fh = r.height * sc
+    lctx.beginPDFPage(nil)
+    lctx.saveGState(); lctx.translateBy(x: 72 + (468 - fw) / 2, y: 720 - fh); lctx.scaleBy(x: sc, y: sc); lctx.drawPDFPage(pg); lctx.restoreGState()
+    let fs = CTFramesetterCreateWithAttributedString(attributed(legends[i].0, legends[i].1))
+    let box = CGRect(x: 72, y: 72, width: 468, height: 720 - fh - 14 - 72)
+    let frame = CTFramesetterCreateFrame(fs, CFRange(location: 0, length: 0), CGPath(rect: box, transform: nil), nil)
+    let shown = CTFrameGetVisibleStringRange(frame).length, total = CFAttributedStringGetLength(attributed(legends[i].0, legends[i].1))
+    precondition(shown == total, "legend does not fit on the page")
+    CTFrameDraw(frame, lctx)
+    lctx.endPDFPage()
+}}
+lctx.closePDF()
 let out = PDFDocument()
-for p in ["{PARTS}/S1_Methods.pdf", tmp.path, "{PARTS}/S2_Fig.pdf"] {{
+for p in ["{PARTS}/S1_Methods.pdf", figPDF] {{
     let d = PDFDocument(url: URL(fileURLWithPath: p))!
     for i in 0..<d.pageCount {{ out.insert(d.page(at: i)!, at: out.pageCount) }}
 }}

@@ -1,45 +1,23 @@
 signature	analysis	set	effect_SD	ci_low	ci_high	lab	y	panel
-AxisA	signature alone	COPD lung (GSE47460)	0.435866081697638	0.154079364341926	0.717652799053349	Axis A (unadjusted)	6.16	"Gene set
-alone"
-AxisA	signature alone	AD pooled (6 cohorts)	0.48889141059131	0.213211760180882	0.764571061001738	Axis A (unadjusted)	5.84	"Gene set
-alone"
-BRETIGEA_microglia_top250	signature alone	COPD lung (GSE47460)	0.498464767391086	0.223610653973833	0.773318880808338	Microglia (BRETIGEA)	5.16	"Gene set
-alone"
-BRETIGEA_microglia_top250	Axis A adjusted for signature	COPD lung (GSE47460)	-0.00894617961746749	-0.151808408249992	0.133916049015057	Microglia (BRETIGEA)	5.16	"Axis A
-adjusted"
-Patir2019_core_microglia	signature alone	COPD lung (GSE47460)	0.483981512134127	0.207763342832463	0.760199681435792	Core microglia (Patir)	4.16	"Gene set
-alone"
-Patir2019_core_microglia	Axis A adjusted for signature	COPD lung (GSE47460)	-0.0438259064213316	-0.112428363582092	0.0247765507394293	Core microglia (Patir)	4.16	"Axis A
-adjusted"
-Travaglini2020_lung_macrophage	signature alone	COPD lung (GSE47460)	0.178360430061637	-0.104306587264327	0.461027447387602	Lung macrophage (Travaglini)	3.16	"Gene set
-alone"
-Travaglini2020_lung_macrophage	Axis A adjusted for signature	COPD lung (GSE47460)	0.331100687353166	0.102150858498318	0.560050516208014	Lung macrophage (Travaglini)	3.16	"Axis A
-adjusted"
-GO0006956_complement_activation	signature alone	COPD lung (GSE47460)	0.656147139631856	0.382315570524758	0.929978708738953	Complement activation (GO)	2.16	"Gene set
-alone"
-GO0006956_complement_activation	Axis A adjusted for signature	COPD lung (GSE47460)	0.00854912337059441	-0.220505669471547	0.237603916212736	Complement activation (GO)	2.16	"Axis A
-adjusted"
-GO0006909_phagocytosis	signature alone	COPD lung (GSE47460)	0.332637999808734	0.0472913104026095	0.617984689214859	Phagocytosis (GO)	1.16	"Gene set
-alone"
-GO0006909_phagocytosis	Axis A adjusted for signature	COPD lung (GSE47460)	0.167164339907816	0.00285417389619103	0.331474505919441	Phagocytosis (GO)	1.16	"Axis A
-adjusted"
-BRETIGEA_microglia_top250	signature alone	AD pooled (6 cohorts)	0.434547910346665	0.0597462087699999	0.80934961192333	Microglia (BRETIGEA)	4.84	"Gene set
-alone"
-BRETIGEA_microglia_top250	Axis A adjusted for signature	AD pooled (6 cohorts)	0.093525679527898	0.0460458612204633	0.141005497835333	Microglia (BRETIGEA)	4.84	"Axis A
-adjusted"
-Patir2019_core_microglia	signature alone	AD pooled (6 cohorts)	0.483984346924708	0.162342449369722	0.805626244479693	Core microglia (Patir)	3.84	"Gene set
-alone"
-Patir2019_core_microglia	Axis A adjusted for signature	AD pooled (6 cohorts)	0.00314778226085531	-0.0322690448185627	0.0385646093402733	Core microglia (Patir)	3.84	"Axis A
-adjusted"
-Travaglini2020_lung_macrophage	signature alone	AD pooled (6 cohorts)	0.340082166605787	-0.0539790497891005	0.734143383000674	Lung macrophage (Travaglini)	2.84	"Gene set
-alone"
-Travaglini2020_lung_macrophage	Axis A adjusted for signature	AD pooled (6 cohorts)	0.220031796619214	0.0855594953536856	0.354504097884742	Lung macrophage (Travaglini)	2.84	"Axis A
-adjusted"
-GO0006956_complement_activation	signature alone	AD pooled (6 cohorts)	0.153298041372835	-0.0472675115626916	0.353863594308362	Complement activation (GO)	1.84	"Gene set
-alone"
-GO0006956_complement_activation	Axis A adjusted for signature	AD pooled (6 cohorts)	0.301123654168175	0.129826512932724	0.472420795403626	Complement activation (GO)	1.84	"Axis A
-adjusted"
-GO0006909_phagocytosis	signature alone	AD pooled (6 cohorts)	0.446113600809331	0.166719758169233	0.725507443449429	Phagocytosis (GO)	0.84	"Gene set
-alone"
-GO0006909_phagocytosis	Axis A adjusted for signature	AD pooled (6 cohorts)	0.0823860026668352	-0.0432689401745615	0.208040945508232	Phagocytosis (GO)	0.84	"Axis A
-adjusted"
+AxisA	signature alone	COPD lung (GSE47460)	0.435866081697638	0.154079364341926	0.717652799053349	Axis A (unadjusted)	6.16	Axis A
+AxisA	signature alone	AD pooled (6 cohorts)	0.48889141059131	0.213211760180882	0.764571061001738	Axis A (unadjusted)	5.84	Axis A
+BRETIGEA_microglia_top250	signature alone	COPD lung (GSE47460)	0.498464767391086	0.223610653973833	0.773318880808338	Microglia (BRETIGEA)	5.16	Gene set
+BRETIGEA_microglia_top250	Axis A adjusted for signature	COPD lung (GSE47460)	-0.00894617961746749	-0.151808408249992	0.133916049015057	Microglia (BRETIGEA)	5.16	Axis A
+Patir2019_core_microglia	signature alone	COPD lung (GSE47460)	0.483981512134127	0.207763342832463	0.760199681435792	Core microglia (Patir)	4.16	Gene set
+Patir2019_core_microglia	Axis A adjusted for signature	COPD lung (GSE47460)	-0.0438259064213316	-0.112428363582092	0.0247765507394293	Core microglia (Patir)	4.16	Axis A
+Travaglini2020_lung_macrophage	signature alone	COPD lung (GSE47460)	0.178360430061637	-0.104306587264327	0.461027447387602	Lung macrophage (Travaglini)	3.16	Gene set
+Travaglini2020_lung_macrophage	Axis A adjusted for signature	COPD lung (GSE47460)	0.331100687353166	0.102150858498318	0.560050516208014	Lung macrophage (Travaglini)	3.16	Axis A
+GO0006956_complement_activation	signature alone	COPD lung (GSE47460)	0.656147139631856	0.382315570524758	0.929978708738953	Complement activation (GO)	2.16	Gene set
+GO0006956_complement_activation	Axis A adjusted for signature	COPD lung (GSE47460)	0.00854912337059441	-0.220505669471547	0.237603916212736	Complement activation (GO)	2.16	Axis A
+GO0006909_phagocytosis	signature alone	COPD lung (GSE47460)	0.332637999808734	0.0472913104026095	0.617984689214859	Phagocytosis (GO)	1.16	Gene set
+GO0006909_phagocytosis	Axis A adjusted for signature	COPD lung (GSE47460)	0.167164339907816	0.00285417389619103	0.331474505919441	Phagocytosis (GO)	1.16	Axis A
+BRETIGEA_microglia_top250	signature alone	AD pooled (6 cohorts)	0.434547910346665	0.0597462087699999	0.80934961192333	Microglia (BRETIGEA)	4.84	Gene set
+BRETIGEA_microglia_top250	Axis A adjusted for signature	AD pooled (6 cohorts)	0.093525679527898	0.0460458612204633	0.141005497835333	Microglia (BRETIGEA)	4.84	Axis A
+Patir2019_core_microglia	signature alone	AD pooled (6 cohorts)	0.483984346924708	0.162342449369722	0.805626244479693	Core microglia (Patir)	3.84	Gene set
+Patir2019_core_microglia	Axis A adjusted for signature	AD pooled (6 cohorts)	0.00314778226085531	-0.0322690448185627	0.0385646093402733	Core microglia (Patir)	3.84	Axis A
+Travaglini2020_lung_macrophage	signature alone	AD pooled (6 cohorts)	0.340082166605787	-0.0539790497891005	0.734143383000674	Lung macrophage (Travaglini)	2.84	Gene set
+Travaglini2020_lung_macrophage	Axis A adjusted for signature	AD pooled (6 cohorts)	0.220031796619214	0.0855594953536856	0.354504097884742	Lung macrophage (Travaglini)	2.84	Axis A
+GO0006956_complement_activation	signature alone	AD pooled (6 cohorts)	0.153298041372835	-0.0472675115626916	0.353863594308362	Complement activation (GO)	1.84	Gene set
+GO0006956_complement_activation	Axis A adjusted for signature	AD pooled (6 cohorts)	0.301123654168175	0.129826512932724	0.472420795403626	Complement activation (GO)	1.84	Axis A
+GO0006909_phagocytosis	signature alone	AD pooled (6 cohorts)	0.446113600809331	0.166719758169233	0.725507443449429	Phagocytosis (GO)	0.84	Gene set
+GO0006909_phagocytosis	Axis A adjusted for signature	AD pooled (6 cohorts)	0.0823860026668352	-0.0432689401745615	0.208040945508232	Phagocytosis (GO)	0.84	Axis A

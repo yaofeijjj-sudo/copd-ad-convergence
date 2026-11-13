@@ -96,7 +96,7 @@ rain <- function(pts, pal, title, subtitle, xbreaks) {
     theme(axis.ticks.y = element_blank(), axis.line.y = element_blank(), axis.text.y = element_text(lineheight = 0.85))
 }
 lp <- fread(P(file.path(LM, "Lung_plotted_points.tsv"))); stopifnot(uniqueN(lp$donor) == 55)
-lp[, lab := c("Perivascular interstitial macrophages" = "Perivascular\ninterstitial\nmacrophages", "Alveolar macrophages" = "Alveolar\nmacrophages",
+lp[, lab := c("Perivascular interstitial macrophages" = "Interstitial\nperivascular\nmacrophages", "Alveolar macrophages" = "Alveolar\nmacrophages",
               "Monocyte-derived macrophages" = "Monocyte-derived\nmacrophages", "Classical monocytes" = "Classical\nmonocytes",
               "Non-classical monocytes" = "Non-classical\nmonocytes", "Conventional DCs" = "Conventional\nDCs",
               "Plasmacytoid DCs" = "Plasmacytoid\nDCs")[annotation]]

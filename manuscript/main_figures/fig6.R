@@ -27,7 +27,7 @@ relabel <- function(d) { d$label_modern <- wrap30(paste0(d$term_name, " (", data
 for (i in seq_along(pa$layers)) if (inherits(pa$layers[[i]]$geom, "GeomLabel")) pa$layers[[i]]$data <- relabel(pa$layers[[i]]$data)
 obj$bubble_data <- relabel(obj$bubble_data)
 pa <- pa + suppressMessages(scale_fill_gradientn(name = "-log10(BH q)", colours = q_colors, limits = c(1, 8), breaks = c(1, 4, 8),
-                                                  labels = c("1", "4", ">=8"), oob = squish, na.value = "white")) +
+                                                  labels = c("1", "4", "\u2265 8"), oob = squish, na.value = "white")) +
   suppressMessages(scale_size_continuous(name = "Overlap n", limits = c(9, 80), breaks = c(10, 30, 60), range = c(2.4, 7.8)))
 for (i in seq_along(pa$layers)) if (inherits(pa$layers[[i]]$geom, c("GeomText", "GeomLabel"))) {
   pa$layers[[i]]$aes_params$size <- FS * PT; pa$layers[[i]]$aes_params$family <- "Arial"; pa$layers[[i]]$aes_params$fontface <- "bold"
@@ -76,10 +76,11 @@ sb <- rbind(ref, sb)
 labs_all <- rbind(data.table(signature = "AxisA", lab = "Axis A (unadjusted)"), sig)
 sb[, lab := labs_all$lab[match(signature, labs_all$signature)]]
 sb[, y := (nrow(labs_all) + 1 - match(signature, labs_all$signature)) + fifelse(set == "COPD lung (GSE47460)", 0.16, -0.16)]
-sb[, panel := factor(fifelse(analysis == "signature alone", "Gene set\nalone", "Axis A\nadjusted"),
-                     c("Gene set\nalone", "Axis A\nadjusted"))]
-sb[signature == "AxisA", panel := "Gene set\nalone"]
-stopifnot(abs(sb[signature == "Travaglini2020_lung_macrophage" & panel == "Axis A adjusted"]$effect_SD - c(0.331, 0.220)) < 0.001)
+# 2026-11-13: the unadjusted Axis A effect is drawn in the Axis A column (top row), above the effects after each gene set
+# is added, so that the attenuation is read within one column; the left column holds the gene sets' own effects.
+sb[, panel := factor(fifelse(analysis == "signature alone" & signature != "AxisA", "Gene set", "Axis A"), c("Gene set", "Axis A"))]
+chk <- sb[signature == "Travaglini2020_lung_macrophage" & analysis == "Axis A adjusted for signature"]$effect_SD
+stopifnot(length(chk) == 2, abs(chk - c(0.331, 0.220)) < 0.001, nrow(sb[signature == "AxisA" & panel == "Axis A"]) == 2)
 pbx <- ggplot(sb, aes(effect_SD, y, colour = set)) +
   geom_vline(xintercept = 0, linetype = 2, linewidth = 0.4, colour = COL$grey) +
   geom_errorbar(aes(xmin = ci_low, xmax = ci_high), width = 0.14, linewidth = 0.5, orientation = "y") +

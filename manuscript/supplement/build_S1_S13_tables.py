@@ -296,7 +296,7 @@ LAB = {"BRETIGEA_microglia_top250": "Microglia, BRETIGEA top 250", "Patir2019_co
        "Travaglini2020_lung_macrophage": "Lung macrophage, Travaglini et al.", "GO0006956_complement_activation": "Complement activation (GO:0006956)",
        "GO0006909_phagocytosis": "Phagocytosis (GO:0006909)"}
 d = rows(MR / "signature_manifest.tsv")
-b.add("Comparison of Axis A with myeloid identity and function signatures.",
+b.add("Comparison of Axis A with myeloid signatures and functional gene sets.",
       "Signatures and their overlap with the 137 Axis A members (genes mapped to current Entrez IDs).",
       ["Signature", "Genes (n)", "Shared with Axis A (n)"], [[LAB.get(r["signature"], r["signature"]), r["n_genes"], r["overlap_axisA"]] for r in d])
 d = rows(MR / "signature_models_by_cohort.tsv")

@@ -52,7 +52,7 @@ sel <- data.table(
   model = c("primary: ~ disease + age + sex + smoking", "primary: CPS_Local (per SD) + age + sex + PMI + RIN + study",
             "ADNC intermediate/high vs not/low + covariates", "sensitivity: >=50 nuclei (78 donors)",
             "primary: CPS_Local (per SD) + age + sex + PMI + RIN + study", "ADNC intermediate/high vs not/low + covariates"),
-  lab = c("Myeloid cells", "CPS", "ADNC", "CPS, >= 50 nuclei", "CPS", "ADNC"),
+  lab = c("Myeloid cells", "CPS", "ADNC", "CPS, \u2265 50 nuclei", "CPS", "ADNC"),
   y = c(10, 6, 5, 4, 2, 1))
 pi_d <- merge(sel, pbk, by = c("organ", "class", "model"), sort = FALSE); stopifnot(nrow(pi_d) == 6)
 pi_d[, grp := c(lung = "Lung, COPD vs control", brain = "")[organ]][grp == "", grp := fifelse(class == "Microglia 2", "Brain Microglia 2", "Brain, all microglia")]

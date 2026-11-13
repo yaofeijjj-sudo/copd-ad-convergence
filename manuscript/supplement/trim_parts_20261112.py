@@ -9,8 +9,10 @@ S7g, S10f, S11b. Sub-parts are re-lettered (S4e->S4b, S6f->S6c, S6g->S6d, S7d->S
 Removed rows/columns: chronic hypersensitivity pneumonitis, confounded with batch and not analyzed (S4a); modified Hartung-Knapp (S5a); FEV1 and three-group models (S6b); alveolar macrophage
 sensitivity rows and Hodges-Lehmann columns (S6g); reference version A and 'all proportions except reference' (S7a, S7b,
 S7d); dtangle and multi-type rows (S7f); shared-genes-removed rows and VIF (S9b, S9c); set-only APOE variant (S10a);
-all-1,000 BRETIGEA set and the descriptive non-reference rows (S10b, S10c, S10d); expression-only P (S9d); fgsea columns (S11a); the out-degree correlation sentence (S12a; out-degree itself is kept because Fig 8b shows it); non-primary models, the prior
+all-1,000 BRETIGEA set and the descriptive non-reference rows (S10b, S10c, S10d); expression-only P (S9d); the out-degree correlation sentence (S12a; out-degree itself is kept because Fig 8b shows it); non-primary models, the prior
 without Axis A targets and the all-TF FDR (S13a).
+2026-11-13 (author): the Results report the fgsea test of the blood datasets again, so the fgsea columns of S11a are
+kept and a BH FDR across the six datasets is added next to them, as for CAMERA.
 
 Run from the project root:
   _workspace/envs/celltypist/bin/python -I 06_resubmission_20261008/code/supplement/trim_parts_20261112.py
@@ -201,10 +203,36 @@ def s10(wb):
 def s11(wb):
     remove(wb, "S11b")
     ws = wb["S11a"]
-    drop_cols(ws, lambda i, h: h[i].startswith("fgsea"))
     text(ws, "A1", ", participant-level effects and duplicate-donor checks for", " and participant-level effects for")
+    text(ws, "A1", "CAMERA tests and participant-level", "fgsea and CAMERA tests and participant-level")
     text(ws, "A2", " fgsea (fgseaMultilevel on moderated t) NES is shown for direction only; fgsea treats genes as "
-         "independent, so its P values are smaller than those of CAMERA, which accounts for inter-gene correlation.", "")
+         "independent, so its P values are smaller than those of CAMERA, which accounts for inter-gene correlation.",
+         " fgsea: fgseaMultilevel on genes ranked by moderated t statistics; BH across the six datasets.")
+    h = header(ws)
+    rows_ = [r for r in range(FIRST, ws.max_row + 1) if ws.cell(r, 1).value is not None]
+
+    def bh(col):
+        p = [float(ws.cell(r, h.index(col) + 1).value) for r in rows_]
+        out, m = [None] * len(p), 1.0
+        for rank, i in sorted(enumerate(sorted(range(len(p)), key=lambda k: p[k]), 1), reverse=True):
+            m = min(m, p[i] * len(p) / rank)
+            out[i] = m
+        return out
+
+    assert len(rows_) == 6 and h[-1] == "fgsea P", (len(rows_), h)
+    assert all(abs(a - float(ws.cell(r, h.index("CAMERA BH FDR (6 datasets)") + 1).value)) < 1e-12
+               for a, r in zip(bh("CAMERA P"), rows_))  # same BH as the CAMERA column
+    merged = [m for m in ws.merged_cells.ranges if m.min_row == 2]
+    for m in merged:
+        ws.unmerge_cells(str(m))
+    src, new = len(h), len(h) + 1
+    for r, v in zip([HEADER_ROW] + rows_, ["fgsea BH FDR (6 datasets)"] + bh("fgsea P")):
+        a, b = ws.cell(r, src), ws.cell(r, new)
+        b.value, b.font, b.alignment, b.border, b.fill, b.number_format = (
+            v, copy.copy(a.font), copy.copy(a.alignment), copy.copy(a.border), copy.copy(a.fill), a.number_format)
+    ws.column_dimensions[openpyxl.utils.get_column_letter(new)].width = ws.column_dimensions[openpyxl.utils.get_column_letter(src)].width
+    if merged:
+        ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=ws.max_column)
 
 
 def s12(wb):

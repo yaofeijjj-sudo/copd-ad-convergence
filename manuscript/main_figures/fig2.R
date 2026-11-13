@@ -48,9 +48,9 @@ pb <- heat(bt, brain_mod, brain_tr, "AD module–trait relationships", "GSE33000
 ov <- fread(P(file.path(REF, "module_overlap.csv")))
 stopifnot(nrow(ov) == 128, all(ov$BH_family_size == 128), sum(ov$fdr < 0.05) == 18)
 lm8 <- sort(unique(ov$lung_module)); bm16 <- sort(unique(ov$brain_module))
-ov[, cls := fifelse(fdr >= 0.05, "BH FDR >= 0.05",
+ov[, cls := fifelse(fdr >= 0.05, "BH FDR \u2265 0.05",
               fifelse(direction == "both_positive", "Both increased", fifelse(direction == "both_negative", "Both decreased", "Opposite")))]
-ov[, cls := factor(cls, c("Both increased", "Both decreased", "Opposite", "BH FDR >= 0.05"))]
+ov[, cls := factor(cls, c("Both increased", "Both decreased", "Opposite", "BH FDR \u2265 0.05"))]
 ov[, x := match(brain_module, bm16)][, y := length(lm8) + 1 - match(lung_module, lm8)]
 xs <- data.table(x = seq_along(bm16), m = bm16); ys <- data.table(y = seq_along(lm8), m = rev(lm8))
 aA <- ov[lung_module == "red" & brain_module == "blue"]; aB <- ov[lung_module == "turquoise" & brain_module == "turquoise"]
@@ -62,7 +62,7 @@ pc <- ggplot(ov[overlap > 0]) +
   annotate("text", x = aA$x + 0.5, y = aA$y + 0.45, label = "Axis A", hjust = 0, size = FS * PT, fontface = "bold", colour = COL$axisA) +
   annotate("text", x = aB$x - 0.6, y = aB$y + 0.5, label = "Axis B", hjust = 1, size = FS * PT, fontface = "bold", colour = COL$axisB) +
   scale_colour_manual(values = c("Both increased" = COL$up, "Both decreased" = COL$down, "Opposite" = COL$opposite,
-                                 "BH FDR >= 0.05" = COL$light), name = NULL, drop = FALSE) +
+                                 "BH FDR \u2265 0.05" = COL$light), name = NULL, drop = FALSE) +
   scale_size_area(max_size = 7.2, breaks = c(50, 200, 400), name = "Shared genes") +
   scale_x_continuous(breaks = xs$x, labels = xs$m, expand = expansion(add = c(0.75, 0.5))) +
   scale_y_continuous(breaks = ys$y, labels = ys$m, expand = expansion(add = c(0.75, 0.5))) +
